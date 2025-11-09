@@ -103,17 +103,19 @@ const Navbar = () => {
             )}
           </div>
          
-          <img
+          <Link to={'/'}><img
             className="h-10 w-12"
             src="https://i.ibb.co.com/q3SHZrK5/BOOK-HEAVEN.png"
             alt=""
-          />
+          /></Link>
+         <Link to={'/'}>
           <h1 className="hidden lg:flex text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-transparent bg-clip-text select-none tracking-tight">
             The <span className="font-light">Book</span>{" "}
             <span className="italic text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.6)]">
               Hoven
             </span>
           </h1>
+         </Link>
         </div>
 
         <ul className="flex gap-3 items-center text-gray-700 dark:text-gray-200 hidden lg:flex">
@@ -129,7 +131,7 @@ const Navbar = () => {
           >
             <span className="sr-only">Open user menu</span>
             <img
-              className="w-8 h-8 rounded-full"
+              className="w-8 h-8 rounded-full cursor-pointer"
               src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
               alt="user"
             />
@@ -175,9 +177,13 @@ const Navbar = () => {
             </div>
           )}
 
-          <div className=" ">
+          <div className="flex items-center gap-2 ">
             <Link to={"/login"} className="btn-primary flex items-center ">
-              LogIn{" "}
+              LogIn
+              <ArrowDownLeft className="h-4 w-5 rotate-180 font-semibold" />
+            </Link>
+            <Link to={"/register"} className="btn-primary flex items-center ">
+              Register
               <ArrowDownLeft className="h-4 w-5 rotate-180 font-semibold" />
             </Link>
           </div>

@@ -5,6 +5,7 @@ import AllBooks from "../pages/AllBooks";
 import AddBook from "../pages/AddBook";
 import MyBooks from "../pages/MyBooks";
 import Login from "../components/Login";
+import Register from "../components/Register";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
         {
           path:'/login',
           Component:Login
+        },
+        {
+          path:'/register',
+          Component:Register
         },
     ]
   },
