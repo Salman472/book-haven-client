@@ -5,7 +5,7 @@ import { Outlet } from 'react-router';
 
 const MainLayout = () => {
   return (
-    <div className=' max-w-[1480px] mx-auto'>
+    <div className=' max-w-[1536px] mx-auto '>
     <div className=''>
       <Navbar/> 
     </div>
