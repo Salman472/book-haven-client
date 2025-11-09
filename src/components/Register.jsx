@@ -5,27 +5,66 @@ import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import { AuthContext } from "../constext/AuthContext";
+import Swal from "sweetalert2";
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
-  
-  const createUser=use(AuthContext)
-  
+
+  const { googleSignIn, createUser, updateUser, setUser } = use(AuthContext);
+
   const hendleRegister = (e) => {
-    
-    e.preventDefault()
-    const form =e.target
-    const name=form.name.value
-    const email=form.email.value
-    const photoURL=form.photoURL.value
-    const password=form.password.value
-    console.log(name,email,photoURL,password);
-    createUser(email,password)
-    .then(result=>{
-      console.log(result.user);
-    })
-    .catch(error=>{
-      console.log(error.message);
-    })
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const photoURL = form.photoURL.value;
+    const password = form.password.value;
+    console.log(name, email, photoURL, password);
+    createUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+        const user = result.user;
+        updateUser({
+          displayName: name,
+          photoURL: photoURL,
+        })
+          .then(() => {
+            setUser({ ...user, displayName: name, photoURL: photoURL });
+            e.target.reset()
+          })
+          .catch((error) => {
+            console.log(error.message);
+            setUser(user)
+          });
+          if (result.user.accessToken) {
+              Swal.fire({
+                title: "Login complete! Google authentication verified",
+
+                icon: "success",
+                draggable: true,
+              });
+            }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+  // google signin
+  const hendleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        console.log(result.user);
+        if (result.user.accessToken) {
+          Swal.fire({
+            title: "Login complete! Google authentication verified",
+
+            icon: "success",
+            draggable: true,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
   return (
     <div className="hero">
@@ -117,6 +156,7 @@ const Register = () => {
 
               {/* Google Login */}
               <button
+                onClick={hendleGoogleSignIn}
                 type="button"
                 className="w-full flex items-center justify-center gap-3 py-3 rounded-lg border border-white/30 bg-white/10 hover:bg-white/20 transition-all duration-300"
               >

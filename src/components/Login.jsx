@@ -6,9 +6,34 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../constext/AuthContext";
 import Swal from "sweetalert2";
 const Login = () => {
-  const { googleSignIn } = use(AuthContext);
+  const { googleSignIn,logInUserWithEmailAndPass } = use(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   // const navigate=useNavigate()
+
+  // sign in with email and password
+  const hendleLogIn=(e)=>{
+    e.preventDefault()
+    const email=e.target.email.value
+    const password=e.target.password.value
+    console.log(email,password);
+    logInUserWithEmailAndPass(email,password)
+    .then(result=>{
+      console.log(result.user);
+      if (result.user.accessToken) {
+          Swal.fire({
+            title: 'Login complete! Google authentication verified',
+            
+            icon: "success",
+            draggable: true,
+          });
+         
+        }
+    })
+    .catch(error=>{
+      console.log(error.message);
+    })
+
+  }
   const hendleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
@@ -41,11 +66,12 @@ const Login = () => {
               Welcome Back 👋
             </h2>
 
-            <form className="space-y-5">
+            <form onSubmit={hendleLogIn} className="space-y-5">
               <div>
                 <label className="block text-sm font-medium mb-1">Email</label>
                 <input
                   type="email"
+                  name="email"
                   placeholder="you@example.com"
                   className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400"
                 />
