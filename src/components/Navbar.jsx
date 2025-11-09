@@ -6,21 +6,33 @@ import {
   House,
   LogIn,
   Menu,
+  PaletteIcon,
+  UserPenIcon,
   X,
 } from "lucide-react";
-import { use, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { Link, Navigate, NavLink } from "react-router";
 import { AuthContext } from "../constext/AuthContext";
 import Swal from "sweetalert2";
 
-
 const Navbar = () => {
-  const { user, logOutUser,loading } = use(AuthContext);
+  const { user, logOutUser, loading } = use(AuthContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
   const toggleDropdownBtn = () => setDropdownOpen(!dropdownOpen);
+   const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
+   useEffect(() => {
+       const html = document.querySelector('html')
+        html.setAttribute("data-theme", theme)
+        localStorage.setItem("theme", theme)
+     }, [theme])
+   
+   
+     const handleTheme = (checked) => {
+       setTheme(checked ? "dark": "light")
+     }
 
   const links = (
     <>
@@ -35,18 +47,22 @@ const Navbar = () => {
           All Books
         </NavLink>
       </li>
-      <li className="list">
-        <NavLink className={"flex items-center gap-[2px]"} to={"/add-book"}>
-          <BadgePlus className="h-4 w-4" />
-          Add Book
-        </NavLink>
-      </li>
-      <li className="list">
-        <NavLink className={"flex items-center gap-[2px]"} to="/my-books">
-          <BookText className="h-4 w-4" />
-          My Books
-        </NavLink>
-      </li>
+      {user && (
+        <>
+          <li className="list">
+            <NavLink className={"flex items-center gap-[2px]"} to={"/add-book"}>
+              <BadgePlus className="h-4 w-4" />
+              Add Book
+            </NavLink>
+          </li>
+          <li className="list">
+            <NavLink className={"flex items-center gap-[2px]"} to="/my-books">
+              <BookText className="h-4 w-4" />
+              My Books
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
   const linkss = (
@@ -63,18 +79,22 @@ const Navbar = () => {
           All Books
         </NavLink>
       </li>
-      <li className="linkss">
-        <NavLink className={"flex items-center gap-[2px]"} to="/add-book">
-          <BadgePlus className="h-4 w-4" />
-          Add Book
-        </NavLink>
-      </li>
-      <li className="linkss">
-        <NavLink className={"flex items-center gap-[2px]"} to="/my-books">
-          <BookText className="h-4 w-4" />
-          My Books
-        </NavLink>
-      </li>
+      {user && (
+        <>
+          <li className="linkss">
+            <NavLink className={"flex items-center gap-[2px]"} to="/add-book">
+              <BadgePlus className="h-4 w-4" />
+              Add Book
+            </NavLink>
+          </li>
+          <li className="linkss">
+            <NavLink className={"flex items-center gap-[2px]"} to="/my-books">
+              <BookText className="h-4 w-4" />
+              My Books
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
 
@@ -104,11 +124,13 @@ const Navbar = () => {
         });
       }
     });
-    
   };
-  if(loading){
-    return <div className="flex justify-center items-center"><span className="loading loading-dots loading-xl text-error"></span>
-</div>
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center">
+        <span className="loading loading-dots loading-xl text-error"></span>
+      </div>
+    );
   }
 
   return (
@@ -198,20 +220,71 @@ const Navbar = () => {
                   </div>
                   <ul className="py-2">
                     <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-indigo-600 hover:bg-gray-100 dark:hover:bg-[#0bc3d1cc] dark:text-gray-200 dark:hover:text-black"
+                      <Link
+                        to={"/profile"}
+                        className="block flex items-center gap-1 px-4 py-2 text-sm text-indigo-600 hover:bg-gray-100 dark:hover:bg-[#0bc3d1cc] dark:text-gray-200 dark:hover:text-black"
                       >
-                        Dashboard
-                      </a>
+                        {" "}
+                        <UserPenIcon className="h-5 w-4" />
+                        Profile
+                      </Link>
                     </li>
-                    <li>
+                    <li className="flex items-center">
                       <a
                         href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-[#0bc3d1cc] dark:text-gray-200 dark:hover:text-black"
+                        className="block flex items-center gap-1 px-4 py-2 text-sm text-gray-700   dark:text-gray-200 "
                       >
-                        Settings
+                        <PaletteIcon className="h-5 w-5" />
+                        Theme
                       </a>
+                      <label className="toggle text-base-content">
+                        <input
+                         onChange={(e)=> handleTheme(e.target.checked)}
+           type="checkbox"
+           defaultChecked={localStorage.getItem('theme') === "dark"}
+                          
+                        />
+
+                        <svg
+                          aria-label="sun"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                        >
+                          <g
+                            strokeLinejoin="round"
+                            strokeLinecap="round"
+                            strokeWidth="2"
+                            fill="none"
+                            stroke="currentColor"
+                          >
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <path d="M12 2v2"></path>
+                            <path d="M12 20v2"></path>
+                            <path d="m4.93 4.93 1.41 1.41"></path>
+                            <path d="m17.66 17.66 1.41 1.41"></path>
+                            <path d="M2 12h2"></path>
+                            <path d="M20 12h2"></path>
+                            <path d="m6.34 17.66-1.41 1.41"></path>
+                            <path d="m19.07 4.93-1.41 1.41"></path>
+                          </g>
+                        </svg>
+
+                        <svg
+                          aria-label="moon"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                        >
+                          <g
+                            strokeLinejoin="round"
+                            strokeLinecap="round"
+                            strokeWidth="2"
+                            fill="none"
+                            stroke="currentColor"
+                          >
+                            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                          </g>
+                        </svg>
+                      </label>
                     </li>
                     <li>
                       <Link

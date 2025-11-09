@@ -74,8 +74,8 @@ const Register = () => {
       <div className="contant">
         <div className="flex justify-center items-center min-h-screen mt-14 p-8">
           <div className="relative w-full max-w-md bg-transparent border border-white/30 backdrop-blur-2xl rounded-2xl shadow-2xl px-10 py-4 text-white">
-            <h2 className="text-3xl font-bold text-center mb-4 mt-5">
-              Create an Account ✨
+            <h2 className="text-3xl font-bold text-center mb-4 mt-5 flex items-center gap-1">
+              Create an Account <span className="hidden sm:flex ">✨</span>
             </h2>
 
             <form onSubmit={hendleRegister} className="space-y-5">
