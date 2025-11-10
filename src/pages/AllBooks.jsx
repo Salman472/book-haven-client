@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
+import { Link } from "react-router";
 
 const AllBooks = () => {
   const [books, setBooks] = useState([]);
   const [originalBooks, setOriginalBooks] = useState([]);
-  const [sortOption, setSortOption] = useState("normal"); // normal, asc, desc
+  const [sortOption, setSortOption] = useState("normal"); 
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  // console.log(books);
+  // data load
+  
   useEffect(() => {
     axios
       .get("http://localhost:3002/all-books")
@@ -138,6 +141,7 @@ const AllBooks = () => {
                   <td className="px-4 py-3">{book?.rating}</td>
                   <td className="px-4 py-3">
                     <motion.button
+                    
                       whileHover={{
                         scale: 1.05,
                         boxShadow: "0px 0px 10px rgba(147, 51, 234, 0.6)",
@@ -145,7 +149,7 @@ const AllBooks = () => {
                       transition={{ duration: 0.3 }}
                       className="bg-gradient-to-r from-indigo-500 to-purple-500 py-1 px-4 rounded-lg font-medium hover:opacity-90 transition"
                     >
-                      View Details
+                      <Link to={`/book-details/${book?._id}`}>View Details</Link>
                     </motion.button>
                   </td>
                 </motion.tr>

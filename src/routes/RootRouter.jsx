@@ -8,40 +8,59 @@ import Login from "../components/Login";
 import Register from "../components/Register";
 import PrivateRoute from "../privateRoute/PrivateRoute";
 import Profile from "../components/Profile";
+import BookDetails from "../pages/BookDetails";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component:MainLayout,
-    children:[
-        {
-            index:true,
-            element:<Home/>
-        },
-        {
-          path:'/all-books',
-          element:<AllBooks/>
-        },
-        {
-          path:'/add-book',
-          element:<PrivateRoute><AddBook/></PrivateRoute>
-        },
-        {
-          path:'/my-books',
-          element:<PrivateRoute><MyBooks/></PrivateRoute>
-        },
-        {
-          path:'/profile',
-          element:<PrivateRoute><Profile/></PrivateRoute>
-        },
-        {
-          path:'/login',
-          Component:Login
-        },
-        {
-          path:'/register',
-          Component:Register
-        },
-    ]
+    Component: MainLayout,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "/all-books",
+        element: <AllBooks />,
+      },
+      {
+        path: "/add-book",
+        element: (
+          <PrivateRoute>
+            <AddBook />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-books",
+        element: (
+          <PrivateRoute>
+            <MyBooks />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/login",
+        Component: Login,
+      },
+      {
+        path: "/register",
+        Component: Register,
+      },
+      {
+        path: "/book-details/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3002/book-details/${params.id}`),
+       element:<PrivateRoute><BookDetails/></PrivateRoute>
+      },
+    ],
   },
 ]);
