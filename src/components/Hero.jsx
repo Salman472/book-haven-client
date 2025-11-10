@@ -1,5 +1,7 @@
 import React from "react";
 import heroVideo from "../assets/book.mp4";
+import HeroBanner from "./HeroBanner";
+import Heroba from "./Demo";
 
 
 const Hero = () => {
@@ -12,7 +14,8 @@ const Hero = () => {
         </div>
       </video>
       <div className="contant">
-        <h1>hello</h1>
+        <HeroBanner/>
+        {/* <Heroba/> */}
        
       </div>
     </div>

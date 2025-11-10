@@ -75,6 +75,39 @@ video {
   color: #162530;
   background: rgba(11, 195, 209, 0.8);
 }
+/* hero bannder btn */
+ .btn-hero{
+  border: none;
+  padding: 6px 20px;
+  list-style: none;
+  font-weight: 500;
+
+  background: rgba(11, 195, 209, 0.8);
+} 
+.btn-hero:hover {
+  border-radius: 20px;
+  border: 2px solid rgba(11, 195, 209, 0.8);
+  transition: all 0.5s ease-in;
+
+  color: #162530;
+  background: none;
+}
+ .btn-out{
+  border: 2px solid rgba(11, 195, 209, 0.8);
+  padding: 6px 20px;
+  list-style: none;
+  font-weight: 500;
+
+  /* background: rgba(11, 195, 209, 0.8); */
+} 
+.btn-out:hover {
+  border-radius: 20px;
+  border: 2px solid transparent;
+  transition: all 0.5s ease-in;
+
+  color: #162530;
+  background: rgba(11, 195, 209, 0.8);
+}
 
 /* navbar */
 .contant {
