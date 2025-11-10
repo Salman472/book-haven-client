@@ -1,40 +1,41 @@
 import React, { use, useState } from "react";
 import heroVideo from "../assets/book.mp4";
-import { Link, Navigate, useNavigate } from "react-router";
+import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../constext/AuthContext";
 import Swal from "sweetalert2";
+import { getFirebaseErrorMessage } from "./Error";
 const Login = () => {
-  const { googleSignIn,logInUserWithEmailAndPass } = use(AuthContext);
+  const { googleSignIn,logInUserWithEmailAndPass,setLoading } = use(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   // const navigate=useNavigate()
-
+const location=useLocation()
+const navigate=useNavigate()
   // sign in with email and password
-  const hendleLogIn=(e)=>{
-    e.preventDefault()
-    const email=e.target.email.value
-    const password=e.target.password.value
-    console.log(email,password);
-    logInUserWithEmailAndPass(email,password)
-    .then(result=>{
-      console.log(result.user);
-      if (result.user.accessToken) {
-          Swal.fire({
-            title: 'Login complete! Google authentication verified',
-            
-            icon: "success",
-            draggable: true,
-          });
-         
-        }
-        e.target.reset()
-    })
-    .catch(error=>{
-      console.log(error.message);
-    })
-
-  }
+  const hendleLogin = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    // console.log(email, password);
+    logInUserWithEmailAndPass(email, password)
+      .then((result) => {
+        console.log(result.user);
+        Swal.fire({
+          title: "Login Successful",
+          icon: "success",
+          draggable: true,
+        });
+        navigate(location.state || '/')
+      })
+      .catch((error) => {
+        setLoading(false);
+      const message = getFirebaseErrorMessage(error);
+      Swal.fire("Sign up failed", message, "error");
+      });
+    // console.log(email,password);
+    e.target.reset();
+  };
   const hendleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
@@ -67,7 +68,7 @@ const Login = () => {
               Welcome Back 👋
             </h2>
 
-            <form onSubmit={hendleLogIn} className="space-y-5">
+            <form onSubmit={hendleLogin} className="space-y-5">
               <div>
                 <label className="block text-sm font-medium mb-1">Email</label>
                 <input

@@ -1,53 +1,67 @@
 import React, { use, useState } from "react";
 import heroVideo from "../assets/book.mp4";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import { AuthContext } from "../constext/AuthContext";
 import Swal from "sweetalert2";
+import { getFirebaseErrorMessage } from "./Error";
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const { googleSignIn, createUser, updateUser, setUser } = use(AuthContext);
-
-  const hendleRegister = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const photoURL = form.photoURL.value;
-    const password = form.password.value;
-    console.log(name, email, photoURL, password);
-    createUser(email, password)
-      .then((result) => {
-        console.log(result.user);
-        const user = result.user;
-        updateUser({
-          displayName: name,
-          photoURL: photoURL,
+  const { googleSignIn, createUser, updateUser, setUser,user } = use(AuthContext);
+  const navigate = useNavigate();
+  // register user
+   const hendleRegister = (e) => {
+      e.preventDefault();
+  
+      const name = e.target.name.value;
+      const photo = e.target.photo.value;
+      const email = e.target.email.value;
+      const password = e.target.password.value;
+      // console.log(name, photo, email, password);
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\d]{6,10}$/;
+  
+      if (!passwordRegex.test(password)) {
+        Swal.fire({
+          icon: "warning",
+          title: "Weak Password ⚠️",
+          text: "Password must contain at least one uppercase one lowercase letter and min 6 chars and max 10 chars.",
+          confirmButtonColor: "#3085d6",
+        });
+        return;
+      }
+  
+      
+      createUser(email, password)
+        .then((result) => {
+          const user=result.user
+        updateUser({displayName:name,photoURL:photo})
+        .then(()=>{
+           setUser({...user,displayName:name,photoURL:photo})
+           navigate('/')
         })
-          .then(() => {
-            setUser({ ...user, displayName: name, photoURL: photoURL });
-            e.target.reset()
-          })
-          .catch((error) => {
-            console.log(error.message);
-            setUser(user)
-          });
-          if (result.user.accessToken) {
-              Swal.fire({
-                title: "Login complete! Google authentication verified",
-
-                icon: "success",
-                draggable: true,
-              });
-            }
+        .catch(()=>{
+        // console.log(error);
+        setUser(user)
       })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
+  
+      
+          Swal.fire({
+            title: "Registation Successful",
+            icon: "success",
+            text: "Your password meets all requirements!",
+            draggable: true,
+          });
+          navigate("/login");
+        })
+        .catch((error) => {
+          const message = getFirebaseErrorMessage(error);
+              Swal.fire("Sign up failed", message, "error");
+        setUser(user)
+        });
+    };
   // google signin
   const hendleGoogleSignIn = () => {
     googleSignIn()
@@ -110,7 +124,7 @@ const Register = () => {
                 </label>
                 <input
                   type="text"
-                  name="photoURL"
+                  name="photo"
                   placeholder="https://example.com/photo.jpg"
                   className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 />
