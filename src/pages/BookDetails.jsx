@@ -1,12 +1,16 @@
-import React from "react";
+import React, { use } from "react";
 import { useNavigate, useLocation, useLoaderData } from "react-router";
 import { motion } from "framer-motion";
+import { AuthContext } from "../constext/AuthContext";
+import DetailsPage from "./loading/DetailsPage";
 // import { useLoaderData } from "react-router";
 
 const BookDetails = () => {
   const navigate = useNavigate();
 //   const location = useLocation();
     const book=useLoaderData()
+    const {loading}=use(AuthContext)
+    
   // Data passed from the previous page using state
 //   const book = location.state?.book;
 
@@ -17,6 +21,7 @@ const BookDetails = () => {
       </div>
     );
   }
+  
 
   return (
     <div className="max-w-6xl mx-auto px-4  mt-18">

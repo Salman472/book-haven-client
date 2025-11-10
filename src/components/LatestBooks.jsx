@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router";
 
 const LatestBooks = () => {
   const [books, setBooks] = useState([]);
@@ -83,7 +84,7 @@ const LatestBooks = () => {
               whileTap="tap"
               className="mt-3 w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-2 rounded-xl font-medium hover:opacity-90 transition"
             >
-              View Details
+              <Link  to={`/book-details/${book?._id}`}>View Details</Link>
             </motion.button>
           </motion.div>
         ))}

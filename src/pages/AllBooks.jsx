@@ -149,7 +149,7 @@ const AllBooks = () => {
                       transition={{ duration: 0.3 }}
                       className="bg-gradient-to-r from-indigo-500 to-purple-500 py-1 px-4 rounded-lg font-medium hover:opacity-90 transition"
                     >
-                      <Link to={`/book-details/${book?._id}`}>View Details</Link>
+                      <Link  to={`/book-details/${book?._id}`}>View Details</Link>
                     </motion.button>
                   </td>
                 </motion.tr>
