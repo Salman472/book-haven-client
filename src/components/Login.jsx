@@ -36,6 +36,7 @@ const navigate=useNavigate()
     // console.log(email,password);
     e.target.reset();
   };
+  // google signin
   const hendleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
@@ -47,7 +48,7 @@ const navigate=useNavigate()
             icon: "success",
             draggable: true,
           });
-         
+          navigate(location.state || '/')
         }
         
       })

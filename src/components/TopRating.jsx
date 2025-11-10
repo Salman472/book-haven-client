@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router";
 
 const TopRating = () => {
   const [books, setBooks] = useState([]);
@@ -77,6 +78,7 @@ const TopRating = () => {
               <p className="mt-1">{book?.author}</p>
               <p className="mt-1">{book?.rating}</p>
             </div>
+            <Link  to={`/book-details/${book?._id}`}>
             <motion.button
               variants={buttonVariants}
               whileHover="hover"
@@ -84,7 +86,7 @@ const TopRating = () => {
               className="mt-3 w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-2 rounded-xl font-medium hover:opacity-90 transition"
             >
               View Details
-            </motion.button>
+            </motion.button></Link>
           </motion.div>
         ))}
       </motion.div>

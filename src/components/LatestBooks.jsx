@@ -77,15 +77,15 @@ const LatestBooks = () => {
             <div className="flex justify-between bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-transparent bg-clip-text select-none tracking-tight">
               <p className="mt-1">{book?.author}</p>
               <p className="mt-1">{book?.rating}</p>
-            </div>
+            </div><Link  to={`/book-details/${book?._id}`}>
             <motion.button
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"
               className="mt-3 w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-2 rounded-xl font-medium hover:opacity-90 transition"
             >
-              <Link  to={`/book-details/${book?._id}`}>View Details</Link>
-            </motion.button>
+              View Details
+            </motion.button></Link>
           </motion.div>
         ))}
       </motion.div>
