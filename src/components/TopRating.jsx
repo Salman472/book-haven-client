@@ -2,11 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-const LatestBooks = () => {
+const TopRating = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    axios('http://localhost:3002/latest-books')
+    axios('http://localhost:3002/top-rating')
       .then(data => {
         console.log(data.data);
         setBooks(data.data);
@@ -18,7 +18,7 @@ const LatestBooks = () => {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.15, // delay between each card animation
+        staggerChildren: 0.15,
       },
     },
   };
@@ -44,18 +44,18 @@ const LatestBooks = () => {
       <motion.h2
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
         className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-pink-500 to-indigo-500 bg-clip-text text-transparent"
       >
-        Latest Books
+        Top Rating Books Collection
       </motion.h2>
 
+      {/* Books Grid with staggered motion */}
       <motion.div
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+      initial={{ opacity: 0, y: -30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
         {books.map((book, index) => (
           <motion.div
@@ -92,4 +92,4 @@ const LatestBooks = () => {
   );
 };
 
-export default LatestBooks;
+export default TopRating;

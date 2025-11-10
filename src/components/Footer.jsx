@@ -5,7 +5,7 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="relative bg-gradient-to-r from-gray-900 via-slate-800 to-gray-700 text-white py-12 mt-20">
+    <footer className="relative bg-transparent text-white py-12 mt-20">
       {/* Overlay with slight light tint for contrast */}
       <div className="absolute inset-0 bg-white/5 backdrop-blur-sm"></div>
 
