@@ -16,10 +16,10 @@
   position: relative;
 }
 video {
-  width: 100%; 
-   /* height: ;  */
-   object-fit: cover;
-}  
+  width: 100%;
+  /* height: ;  */
+  object-fit: cover;
+}
 
 /* navbar style */
 .navbar {
@@ -31,21 +31,21 @@ video {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   z-index: 999;
-  padding:  0 20px;
+  padding: 0 20px;
 }
 /* list style */
 .list {
   padding: 3px 15px;
   /* color: blue; */
-   font-weight: bold;
+  font-weight: bold;
 }
 
 .list:hover {
   border-radius: 20px;
   border: 2px solid transparent;
   transition: all 0.7s ease;
-  white-space: nowrap; 
-  color: #162530; 
+  white-space: nowrap;
+  color: #162530;
   background: rgba(11, 195, 209, 0.8);
 }
 .list a.active {
@@ -53,20 +53,20 @@ video {
   border-radius: 20px;
   border: 2px solid transparent;
   transition: all 0.7s ease;
-  white-space: nowrap; 
+  white-space: nowrap;
   color: #162530;
   background: rgba(11, 195, 209, 0.8);
 }
 
- /* login btn */
- .btn-primary {
+/* login btn */
+.btn-primary {
   border: none;
   padding: 3px 20px;
-
+  border-radius: 5px;
   font-weight: 500;
 
   background: rgba(11, 195, 209, 0.8);
-} 
+}
 .btn-primary:hover {
   border-radius: 20px;
   border: 2px solid transparent;
@@ -76,14 +76,14 @@ video {
   background: rgba(11, 195, 209, 0.8);
 }
 /* hero bannder btn */
- .btn-hero{
+.btn-hero {
   border: none;
   padding: 6px 20px;
   list-style: none;
   font-weight: 500;
-
+  border-radius: 5px;
   background: rgba(11, 195, 209, 0.8);
-} 
+}
 .btn-hero:hover {
   border-radius: 20px;
   border: 2px solid rgba(11, 195, 209, 0.8);
@@ -92,18 +92,32 @@ video {
   color: #162530;
   background: none;
 }
- .btn-out{
+.btn-out {
   border: 2px solid rgba(11, 195, 209, 0.8);
   padding: 6px 20px;
   list-style: none;
   font-weight: 500;
+   border-radius: 5px;
+}
 
-  /* background: rgba(11, 195, 209, 0.8); */
-} 
 .btn-out:hover {
   border-radius: 20px;
   border: 2px solid transparent;
   transition: all 0.5s ease-in;
+
+  color: #162530;
+  background: rgba(11, 195, 209, 0.8);
+}
+.btn-outli {
+  border: 2px solid rgba(11, 195, 209, 0.8);
+  padding: 6px 20px;
+  list-style: none;
+  font-weight: 500;
+}
+.btn-outli:hover {
+  border-radius: 50px;
+  border: 2px solid transparent;
+  transition: all 0.2s ease-in;
 
   color: #162530;
   background: rgba(11, 195, 209, 0.8);
@@ -119,19 +133,19 @@ video {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5)
+  background-color: rgba(0, 0, 0, 0.5);
 }
 /* dropdown links */
-.linkss{
-  @apply block px-4  text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-[#0bc3d1cc] dark:text-gray-200 dark:hover:text-black
+.linkss {
+  @apply block px-4  text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-[#0bc3d1cc] dark:text-gray-200 dark:hover:text-black;
 }
 
 /* loading all books */
-/* From Uiverse.io by dexter-st */ 
+/* From Uiverse.io by dexter-st */
 .wrapper-grid {
   --animation-duration: 2.1s;
   --cube-color: #0000;
-  --highlight-color: #00cc44;
+  --highlight-color: #0bc3d1cc;
   --cube-width: 48px;
   --cube-height: 48px;
   --font-size: 1.8em;
@@ -172,9 +186,7 @@ video {
 .face-right,
 .face-back,
 .face-front {
-  box-shadow:
-    inset 0 0 2px 1px #0001,
-    inset 0 0 12px 1px #fff1;
+  box-shadow: inset 0 0 2px 1px #0001, inset 0 0 12px 1px #fff1;
 }
 .face-front {
   transform: rotateY(0deg) translateZ(calc(var(--cube-width) / 2));
@@ -236,15 +248,13 @@ video {
   animation: translate-z var(--animation-duration) ease-in-out infinite;
 }
 .cube .face {
-  animation:
-    face-color var(--animation-duration) ease-in-out infinite,
+  animation: face-color var(--animation-duration) ease-in-out infinite,
     /* face-glow var(--animation-duration) ease-in-out infinite, */ edge-glow
       var(--animation-duration) ease-in-out infinite;
   animation-delay: inherit;
 }
 .cube .face.face-front {
-  animation:
-    face-color var(--animation-duration) ease-in-out infinite,
+  animation: face-color var(--animation-duration) ease-in-out infinite,
     face-glow var(--animation-duration) ease-in-out infinite,
     edge-glow var(--animation-duration) ease-in-out infinite;
   animation-delay: inherit;
@@ -286,12 +296,14 @@ video {
   0%,
   40%,
   100% {
-    box-shadow:
-      inset 0 0 2px 1px #0001,
-      inset 0 0 12px 1px #fff1;
+    box-shadow: inset 0 0 2px 1px #0001, inset 0 0 12px 1px #fff1;
   }
   30% {
     box-shadow: 0 0 2px 0px var(--highlight-color);
   }
 }
 
+/* all books */
+.text {
+  @apply bg-gradient-to-r from-pink-500 to-indigo-500 bg-clip-text text-transparent;
+}

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { Link } from "react-router";
+import DetailsPage from "./loading/DetailsPage";
+import { Tooltip } from "react-tooltip";
 
 const AllBooks = () => {
   const [books, setBooks] = useState([]);
@@ -56,6 +58,7 @@ const AllBooks = () => {
       {/* Dropdown Sort Button */}
       <div className="flex justify-end mb-4 relative">
         <motion.button
+        data-tooltip-id="sortBtn"
           onClick={() => setDropdownOpen(!dropdownOpen)}
           whileHover={{ scale: 1.05 }}
           className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-2 px-6 rounded-lg font-medium hover:opacity-90 transition"
@@ -66,7 +69,7 @@ const AllBooks = () => {
             ? "Sort: Rating ↓"
             : "Sort: Normal"}
         </motion.button>
-
+            <Tooltip id="sortBtn" place="top" delayShow={100} delayHide={500}  border={'2px solid black'} style={{color:'black',backgroundColor:'white',fontWeight:'bold'}}>Sort By Rating</Tooltip>
         {dropdownOpen && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -124,7 +127,7 @@ const AllBooks = () => {
                     delay: index * 0.2,
                     ease: "easeOut",
                   }}
-                  className="border-b border-gray-700 hover:bg-gray-800 transition"
+                  className="border-b border-gray-700  hover:bg-gray-800 transition "
                 >
                   <td className="px-4 py-3">
                     <motion.img
@@ -135,11 +138,11 @@ const AllBooks = () => {
                       transition={{ duration: 0.3 }}
                     />
                   </td>
-                  <td className="px-4 py-3 font-semibold">{book?.title}</td>
-                  <td className="px-4 py-3">{book?.author}</td>
-                  <td className="px-4 py-3">{book?.genre}</td>
-                  <td className="px-4 py-3">{book?.rating}</td>
-                  <td className="px-4 py-3">
+                  <td className="px-4 py-3 font-semibold text">{book?.title}</td>
+                  <td className="px-4 py-3 text">{book?.author}</td>
+                  <td className="px-4 py-3 text">{book?.genre}</td>
+                  <td className="px-4 py-3 text" >{book?.rating}</td>
+                  <td className="px-4 py-3 text">
                     <Link  to={`/book-details/${book?._id}`}>
                     <motion.button
                     
@@ -148,7 +151,7 @@ const AllBooks = () => {
                         boxShadow: "0px 0px 10px rgba(147, 51, 234, 0.6)",
                       }}
                       transition={{ duration: 0.3 }}
-                      className="bg-gradient-to-r from-indigo-500 to-purple-500 py-1 px-4 rounded-lg font-medium hover:opacity-90 transition"
+                      className="bg-gradient-to-r from-indigo-500 to-purple-500 py-1 px-4 rounded-lg font-medium hover:opacity-90 transition text-white"
                     >
                       View Details
                     </motion.button></Link>
@@ -156,13 +159,16 @@ const AllBooks = () => {
                 </motion.tr>
               ))
             ) : (
-              <tr>
-                <td
+              <tr >
+                
+                  <td
                   colSpan="6"
-                  className="text-center py-6 text-gray-400 font-medium"
+                  className="text-centerpy-6 text-gray-400 font-medium"
                 >
-                  Loading books...
+                  <h1 className="text-center  flex justify-center items-center h-[50vh]"><DetailsPage/></h1>
                 </td>
+               
+                
               </tr>
             )}
           </tbody>

@@ -11,15 +11,18 @@ import {
   X,
 } from "lucide-react";
 import { use, useEffect, useState } from "react";
-import { Link, Navigate, NavLink } from "react-router";
+import { Link, Navigate, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../constext/AuthContext";
 import Swal from "sweetalert2";
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
+import { color } from "framer-motion";
 
 const Navbar = () => {
   const { user, logOutUser, loading } = use(AuthContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+ 
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
   const toggleDropdownBtn = () => setDropdownOpen(!dropdownOpen);
    const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
@@ -113,6 +116,7 @@ const Navbar = () => {
         logOutUser()
           .then((result) => {
             console.log(result);
+           
           })
           .catch((error) => {
             console.log(error.message);
@@ -187,18 +191,23 @@ const Navbar = () => {
           {/* Profile Button */}
           {user ? (
             <>
-              <button
+              <div>
+                <button
                 onClick={toggleDropdown}
                 type="button"
                 className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
               >
                 <span className="sr-only">Open user menu</span>
-                <img
+                <img data-tooltip-id="profileImg"
+                 data-tooltip-content={user?.displayName || "User"}
                   className="w-8 h-8 rounded-full cursor-pointer"
                   src={user?.photoURL}
                   alt="user"
                 />
+                
               </button>
+              <Tooltip id="profileImg" place="bottom" delayShow={100} delayHide={500} border={'2px solid black'} style={{color:'black',backgroundColor:'white',fontWeight:'bold'}}>{user?.displayName}</Tooltip>
+              </div>
               <Link
                 onClick={hendleLogOut}
                 className="btn-primary flex items-center hidden sm:flex "
@@ -206,12 +215,13 @@ const Navbar = () => {
                 Log Out
                 <LogIn className="h-5 w-5" />
               </Link>
+        
 
               {/* Dropdown menu */}
               {isDropdownOpen && (
                 <div className="absolute top-12 right-0 z-50 w-44 text-base list-none divide-y divide-gray-100 rounded-lg shadow-sm bg-white/30 backdrop-blur-3xl ">
                   <div className="px-4 py-3">
-                    <span className="block text-sm text-gray-900 dark:text-white">
+                    <span className="block text-sm font-semibold text-gray-900 dark:text-white">
                       {user.displayName}
                     </span>
                     <span className="block text-sm text-gray-700 truncate dark:text-gray-200">

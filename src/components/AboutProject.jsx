@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router";
 
 const AboutSection = () => {
   return (
@@ -31,9 +32,9 @@ const AboutSection = () => {
         transition={{ delay: 0.6, duration: 0.8 }}
         className="mt-10 flex justify-center"
       >
-        <button className="px-6 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-indigo-500  to-purple-500 text-white py-2 rounded-xl font-medium hover:opacity-90 transition">
+        <Link to={'/all-books'} className="px-6 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-indigo-500  to-purple-500 text-white py-2 rounded-xl font-medium hover:opacity-90 transition">
           Explore Our Collection
-        </button>
+        </Link>
       </motion.div>
     </section>
   );

@@ -9,6 +9,7 @@ import Register from "../components/Register";
 import PrivateRoute from "../privateRoute/PrivateRoute";
 import Profile from "../components/Profile";
 import BookDetails from "../pages/BookDetails";
+import PageNotFound from "../error/PageNotFound";
 
 export const router = createBrowserRouter([
   {
@@ -58,9 +59,13 @@ export const router = createBrowserRouter([
       {
         path: "/book-details/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3002/book-details/${params.id}`),
+          fetch(`http://localhost:3002/all-books/${params.id}`),
        element:<PrivateRoute><BookDetails/></PrivateRoute>
       },
+      {
+        path:'/*',
+        element:<PageNotFound/>
+      }
     ],
   },
 ]);
