@@ -8,11 +8,12 @@ import Swal from "sweetalert2";
 import { getFirebaseErrorMessage } from "./Error";
 import axios from "axios";
 const Login = () => {
-  const { googleSignIn,logInUserWithEmailAndPass,setLoading } = use(AuthContext);
+  const { googleSignIn, logInUserWithEmailAndPass, setLoading } =
+    use(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   // const navigate=useNavigate()
-const location=useLocation()
-const navigate=useNavigate()
+  const location = useLocation();
+  const navigate = useNavigate();
   // sign in with email and password
   const hendleLogin = (e) => {
     e.preventDefault();
@@ -22,33 +23,33 @@ const navigate=useNavigate()
     logInUserWithEmailAndPass(email, password)
       .then((result) => {
         console.log(result.user);
-        
+
         Swal.fire({
           title: "Login Successful",
           icon: "success",
           draggable: true,
         });
 
-        const newUser={name:result.user.displayName, photoUrl:result.user.photoURL,email:result.user.email}
-        axios.post('http://localhost:3002/users',newUser)
-        .then(data=>{
-          console.log(data.data);
-        })
-        .catch(error=>{
-          console.log(error.message);
-        })
+        const newUser = {
+          name: result.user.displayName,
+          photoUrl: result.user.photoURL,
+          email: result.user.email,
+        };
+        axios
+          .post("https://book-haven-server-bay.vercel.app/users", newUser)
+          .then((data) => {
+            console.log(data.data);
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
 
-
-
-
-
-
-        navigate(location.state || '/')
+        navigate(location.state || "/");
       })
       .catch((error) => {
         setLoading(false);
-      const message = getFirebaseErrorMessage(error);
-      Swal.fire("Sign up failed", message, "error");
+        const message = getFirebaseErrorMessage(error);
+        Swal.fire("Sign up failed", message, "error");
       });
     // console.log(email,password);
     e.target.reset();
@@ -60,21 +61,26 @@ const navigate=useNavigate()
         console.log(result.user);
         if (result.user.accessToken) {
           Swal.fire({
-            title: 'Login complete! Google authentication verified',
-            
+            title: "Login complete! Google authentication verified",
+
             icon: "success",
             draggable: true,
           });
-          navigate(location.state || '/')
+          navigate(location.state || "/");
         }
-        const newUser={name:result.user.displayName, photoUrl:result.user.photoURL,email:result.user.email}
-        axios.post('http://localhost:3002/users',newUser)
-        .then(data=>{
-          console.log(data.data);
-        })
-        .catch(error=>{
-          console.log(error.message);
-        })
+        const newUser = {
+          name: result.user.displayName,
+          photoUrl: result.user.photoURL,
+          email: result.user.email,
+        };
+        axios
+          .post("https://book-haven-server-bay.vercel.app/users", newUser)
+          .then((data) => {
+            console.log(data.data);
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
       })
       .catch((error) => {
         console.log(error.message);

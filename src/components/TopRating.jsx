@@ -1,21 +1,19 @@
 import axios from "axios";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router";
 import { AuthContext } from "../constext/AuthContext";
 
-
 const TopRating = () => {
   const [books, setBooks] = useState([]);
- 
 
   useEffect(() => {
-   
-    axios('http://localhost:3002/top-rating')
-      .then(data => {
+    axios("https://book-haven-server-bay.vercel.app/top-rating").then(
+      (data) => {
         console.log(data.data);
         setBooks(data.data);
-      });
+      }
+    );
   }, []);
 
   // Variants for smooth staggered animation
@@ -30,7 +28,11 @@ const TopRating = () => {
 
   const cardVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
     hover: { scale: 1.05, transition: { duration: 0.3, ease: "easeInOut" } },
   };
 
@@ -42,8 +44,6 @@ const TopRating = () => {
     hover: { scale: 1.05, transition: { duration: 0.2, ease: "easeInOut" } },
     tap: { scale: 0.95 },
   };
-
-  
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-10">
@@ -60,7 +60,7 @@ const TopRating = () => {
       {/* Books Grid with staggered motion */}
       <motion.div
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
-      initial={{ opacity: 0, y: -30 }}
+        initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         variants={containerVariants}
@@ -85,15 +85,16 @@ const TopRating = () => {
               <p className="mt-1">{book?.author}</p>
               <p className="mt-1">{book?.rating}</p>
             </div>
-            <Link  to={`/book-details/${book?._id}`}>
-            <motion.button
-              variants={buttonVariants}
-              whileHover="hover"
-              whileTap="tap"
-              className="mt-3 w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-2 rounded-xl font-medium hover:opacity-90 transition"
-            >
-              View Details
-            </motion.button></Link>
+            <Link to={`/book-details/${book?._id}`}>
+              <motion.button
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+                className="mt-3 w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-2 rounded-xl font-medium hover:opacity-90 transition"
+              >
+                View Details
+              </motion.button>
+            </Link>
           </motion.div>
         ))}
       </motion.div>

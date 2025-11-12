@@ -6,24 +6,33 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../constext/AuthContext";
 
 const AddBook = () => {
-    const navigate=useNavigate()
-    const {user}=use(AuthContext)
+  const navigate = useNavigate();
+  const { user } = use(AuthContext);
   const hendleAddBook = (e) => {
     e.preventDefault();
     const form = e.target;
     const title = form.title.value;
     const author = form.author.value;
     const genre = form.genre.value;
-    const rating = Number(form.rating.value)
-    if(rating>5){
-        return
+    const rating = Number(form.rating.value);
+    if (rating > 5) {
+      return;
     }
     const summary = form.summary.value;
     const coverImage = form.coverImage.value;
     console.log(title, author, genre, rating, summary, coverImage);
-    const newBook = { title, author, genre, rating, summary, coverImage,email:user.email, name:user.displayName };
+    const newBook = {
+      title,
+      author,
+      genre,
+      rating,
+      summary,
+      coverImage,
+      email: user.email,
+      name: user.displayName,
+    };
     axios
-      .post("http://localhost:3002/add-book", newBook)
+      .post("https://book-haven-server-bay.vercel.app/add-book", newBook)
       .then((data) => {
         console.log(data.data);
         if (data.data.insertedId) {
@@ -34,8 +43,8 @@ const AddBook = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          navigate('/')
-          e.target.reset()
+          navigate("/");
+          e.target.reset();
         }
       })
       .catch((error) => {
@@ -101,7 +110,7 @@ const AddBook = () => {
             type="number"
             name="rating"
             required
-            step='0.1'
+            step="0.1"
             min="0"
             max="5"
             className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"

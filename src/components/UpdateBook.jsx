@@ -12,7 +12,7 @@ const UpdateBook = ({ singleBook, hendleOpenModal }) => {
   const handleUpdate = (e) => {
     e.preventDefault();
     const form = e.target;
-    const title=form.title.value
+    const title = form.title.value;
     const author = form.author.value;
     const genre = form.genre.value;
     const rating = Number(form.rating.value);
@@ -35,13 +35,15 @@ const UpdateBook = ({ singleBook, hendleOpenModal }) => {
       userEmail: user.email,
     };
     // console.log(updateBook);
-    
+
     axios
-      .patch(`http://localhost:3002/my-books/${singleBook?._id}`, updateBook)
+      .patch(
+        `https://book-haven-server-bay.vercel.app/my-books/${singleBook?._id}`,
+        updateBook
+      )
       .then((data) => {
         // console.log(data.data);
         if (data.data.modifiedCount) {
-          
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -108,7 +110,7 @@ const UpdateBook = ({ singleBook, hendleOpenModal }) => {
           <input
             type="text"
             name="author"
-             defaultValue={singleBook?.author}
+            defaultValue={singleBook?.author}
             placeholder="Enter author name"
             className="w-full p-3 rounded-lg bg-white/10 border border-white/20 focus:ring-2 focus:ring-indigo-400 outline-none"
           />
@@ -120,7 +122,7 @@ const UpdateBook = ({ singleBook, hendleOpenModal }) => {
           <input
             type="text"
             name="genre"
-             defaultValue={singleBook?.genre}
+            defaultValue={singleBook?.genre}
             placeholder="Enter genre name"
             className="w-full p-3 rounded-lg bg-white/10 border border-white/20 focus:ring-2 focus:ring-indigo-400 outline-none"
           />
@@ -132,7 +134,7 @@ const UpdateBook = ({ singleBook, hendleOpenModal }) => {
           <input
             type="text"
             name="rating"
-             defaultValue={singleBook?.rating}
+            defaultValue={singleBook?.rating}
             // value={singleBook.rating}
             placeholder="Rate 1-5"
             min="1"
@@ -146,7 +148,7 @@ const UpdateBook = ({ singleBook, hendleOpenModal }) => {
           <label className="block text-sm font-medium mb-1">Summary</label>
           <textarea
             name="summary"
-             defaultValue={singleBook?.summary}
+            defaultValue={singleBook?.summary}
             rows="4"
             placeholder="Write a short summary..."
             className="w-full p-3 rounded-lg bg-white/10 border border-white/20 focus:ring-2 focus:ring-indigo-400 outline-none"
@@ -161,7 +163,7 @@ const UpdateBook = ({ singleBook, hendleOpenModal }) => {
           <input
             type="text"
             name="coverImage"
-             defaultValue={singleBook?.coverImage}
+            defaultValue={singleBook?.coverImage}
             placeholder="https://example.com/cover.jpg"
             className="w-full p-3 rounded-lg bg-white/10 border border-white/20 focus:ring-2 focus:ring-indigo-400 outline-none"
           />

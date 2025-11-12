@@ -47,7 +47,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      
+
       {
         path: "/login",
         Component: Login,
@@ -59,13 +59,19 @@ export const router = createBrowserRouter([
       {
         path: "/book-details/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3002/all-books/${params.id}`),
-       element:<PrivateRoute><BookDetails/></PrivateRoute>
+          fetch(
+            `https://book-haven-server-bay.vercel.app/all-books/${params.id}`
+          ),
+        element: (
+          <PrivateRoute>
+            <BookDetails />
+          </PrivateRoute>
+        ),
       },
       {
-        path:'/*',
-        element:<PageNotFound/>
-      }
+        path: "/*",
+        element: <PageNotFound />,
+      },
     ],
   },
 ]);

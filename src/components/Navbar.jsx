@@ -19,7 +19,7 @@ import "react-tooltip/dist/react-tooltip.css";
 
 
 const Navbar = () => {
-  const { user, logOutUser } = use(AuthContext);
+  const { user, logOutUser, loading } = use(AuthContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
  
@@ -129,13 +129,13 @@ const Navbar = () => {
       }
     });
   };
-  // if (loading) {
-  //   return (
-  //     <div className="flex justify-center items-center">
-  //       <span className="loading loading-dots loading-xl text-error"></span>
-  //     </div>
-  //   );
-  // }
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center">
+        <span className="loading loading-dots loading-xl text-error"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="">

@@ -8,14 +8,14 @@ import { Tooltip } from "react-tooltip";
 const AllBooks = () => {
   const [books, setBooks] = useState([]);
   const [originalBooks, setOriginalBooks] = useState([]);
-  const [sortOption, setSortOption] = useState("normal"); 
+  const [sortOption, setSortOption] = useState("normal");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   // console.log(books);
   // data load
-  
+
   useEffect(() => {
     axios
-      .get("http://localhost:3002/all-books")
+      .get("https://book-haven-server-bay.vercel.app/all-books")
       .then((res) => {
         if (Array.isArray(res.data)) {
           setBooks(res.data);
@@ -32,9 +32,13 @@ const AllBooks = () => {
 
     let sorted = [...books];
     if (option === "asc") {
-      sorted.sort((a, b) => (parseFloat(a.rating) || 0) - (parseFloat(b.rating) || 0));
+      sorted.sort(
+        (a, b) => (parseFloat(a.rating) || 0) - (parseFloat(b.rating) || 0)
+      );
     } else if (option === "desc") {
-      sorted.sort((a, b) => (parseFloat(b.rating) || 0) - (parseFloat(a.rating) || 0));
+      sorted.sort(
+        (a, b) => (parseFloat(b.rating) || 0) - (parseFloat(a.rating) || 0)
+      );
     } else {
       sorted = [...originalBooks]; // normal order
     }
@@ -45,7 +49,7 @@ const AllBooks = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 mt-14">
       {/* Title */}
-      
+
       <motion.h2
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
@@ -58,7 +62,7 @@ const AllBooks = () => {
       {/* Dropdown Sort Button */}
       <div className="flex justify-end mb-4 relative">
         <motion.button
-        data-tooltip-id="sortBtn"
+          data-tooltip-id="sortBtn"
           onClick={() => setDropdownOpen(!dropdownOpen)}
           whileHover={{ scale: 1.05 }}
           className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-2 px-6 rounded-lg font-medium hover:opacity-90 transition"
@@ -69,7 +73,20 @@ const AllBooks = () => {
             ? "Sort: Rating ↓"
             : "Sort: Normal"}
         </motion.button>
-            <Tooltip id="sortBtn" place="top" delayShow={100} delayHide={500}  border={'2px solid black'} style={{color:'black',backgroundColor:'white',fontWeight:'bold'}}>Sort By Rating</Tooltip>
+        <Tooltip
+          id="sortBtn"
+          place="top"
+          delayShow={100}
+          delayHide={500}
+          border={"2px solid black"}
+          style={{
+            color: "black",
+            backgroundColor: "white",
+            fontWeight: "bold",
+          }}
+        >
+          Sort By Rating
+        </Tooltip>
         {dropdownOpen && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -77,7 +94,6 @@ const AllBooks = () => {
             transition={{ duration: 0.2 }}
             className="absolute right-0 mt-2 bg-gray-800 text-white rounded-lg shadow-lg w-48 z-10"
           >
-           
             <ul>
               <li
                 onClick={() => handleSort("normal")}
@@ -138,37 +154,38 @@ const AllBooks = () => {
                       transition={{ duration: 0.3 }}
                     />
                   </td>
-                  <td className="px-4 py-3 font-semibold text">{book?.title}</td>
+                  <td className="px-4 py-3 font-semibold text">
+                    {book?.title}
+                  </td>
                   <td className="px-4 py-3 text">{book?.author}</td>
                   <td className="px-4 py-3 text">{book?.genre}</td>
-                  <td className="px-4 py-3 text" >{book?.rating}</td>
+                  <td className="px-4 py-3 text">{book?.rating}</td>
                   <td className="px-4 py-3 text">
-                    <Link  to={`/book-details/${book?._id}`}>
-                    <motion.button
-                    
-                      whileHover={{
-                        scale: 1.05,
-                        boxShadow: "0px 0px 10px rgba(147, 51, 234, 0.6)",
-                      }}
-                      transition={{ duration: 0.3 }}
-                      className="bg-gradient-to-r from-indigo-500 to-purple-500 py-1 px-4 rounded-lg font-medium hover:opacity-90 transition text-white"
-                    >
-                      View Details
-                    </motion.button></Link>
+                    <Link to={`/book-details/${book?._id}`}>
+                      <motion.button
+                        whileHover={{
+                          scale: 1.05,
+                          boxShadow: "0px 0px 10px rgba(147, 51, 234, 0.6)",
+                        }}
+                        transition={{ duration: 0.3 }}
+                        className="bg-gradient-to-r from-indigo-500 to-purple-500 py-1 px-4 rounded-lg font-medium hover:opacity-90 transition text-white"
+                      >
+                        View Details
+                      </motion.button>
+                    </Link>
                   </td>
                 </motion.tr>
               ))
             ) : (
-              <tr >
-                
-                  <td
+              <tr>
+                <td
                   colSpan="6"
                   className="text-centerpy-6 text-gray-400 font-medium"
                 >
-                  <h1 className="text-center  flex justify-center items-center h-[50vh]"><DetailsPage/></h1>
+                  <h1 className="text-center  flex justify-center items-center h-[50vh]">
+                    <DetailsPage />
+                  </h1>
                 </td>
-               
-                
               </tr>
             )}
           </tbody>

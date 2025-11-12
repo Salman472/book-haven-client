@@ -21,7 +21,9 @@ const MyBooks = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3002/my-books?email=${user?.email}`)
+      .get(
+        `https://book-haven-server-bay.vercel.app/my-books?email=${user?.email}`
+      )
       .then((res) => {
         if (Array.isArray(res.data)) {
           setBooks(res.data);
@@ -65,7 +67,7 @@ const MyBooks = () => {
       if (result.isConfirmed) {
         console.log("hendle delete btn clicked", id);
         axios
-          .delete(`http://localhost:3002/delete-book/${id}`)
+          .delete(`https://book-haven-server-bay.vercel.app/delete-book/${id}`)
           .then((data) => {
             console.log("after delete data", data);
             if (data.data.deletedCount) {
@@ -124,11 +126,14 @@ const MyBooks = () => {
     // console.log(updateBook);
 
     axios
-      .patch(`http://localhost:3002/my-books/${singleBook?._id}`, updateBook)
+      .patch(
+        `https://book-haven-server-bay.vercel.app/my-books/${singleBook?._id}`,
+        updateBook
+      )
       .then((data) => {
         // console.log(data.data);
         if (data.data.modifiedCount) {
-          modalRef.current.close()
+          modalRef.current.close();
           Swal.fire({
             position: "center",
             icon: "success",
@@ -136,9 +141,9 @@ const MyBooks = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          updateBook._id=data.id
-          const update=[...books,updateBook]
-          setBooks(update)
+          updateBook._id = data.id;
+          const update = [...books, updateBook];
+          setBooks(update);
         }
       })
       .catch((error) => {
