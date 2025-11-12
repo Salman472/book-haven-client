@@ -129,13 +129,13 @@ const Navbar = () => {
       }
     });
   };
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center">
-        <span className="loading loading-dots loading-xl text-error"></span>
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="flex justify-center items-center">
+  //       <span className="loading loading-dots loading-xl text-error"></span>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className=" ">

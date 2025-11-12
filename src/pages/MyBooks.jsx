@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, { use, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { Link } from "react-router";
@@ -8,6 +8,7 @@ import { NotebookPen, Trash } from "lucide-react";
 import { AuthContext } from "../constext/AuthContext";
 import Swal from "sweetalert2";
 import EmptyBook from "../components/EmptyBook";
+import UpdateBook from "../components/UpdateBook";
 
 const MyBooks = () => {
   const [books, setBooks] = useState([]);
@@ -79,6 +80,12 @@ const MyBooks = () => {
    
   }
 });
+  }
+
+  // modal open button function
+  const modalRef=useRef(null)
+  const hendleOpenModal=()=>{
+    modalRef.current.showModal()
   }
 
   return (
@@ -198,7 +205,7 @@ const MyBooks = () => {
                   <td className="px-4 py-3 text" >{book?.rating}</td>
                   <td className="px-4 py-3 text ">
                     <div className="flex justify-center items-center gap-2 h-full">
-                        <Link  to={`/book-details/${book?._id}`}>
+                        <Link onClick={hendleOpenModal}>
                     <motion.button
                     
                       whileHover={{
@@ -210,6 +217,22 @@ const MyBooks = () => {
                     ><NotebookPen className="h-4 w-4" />
                      Update
                     </motion.button></Link>
+
+                    {/* open model to update product */}
+
+                      {/* Open the modal using document.getElementById('ID').showModal() method */}
+
+<dialog ref={modalRef} className="modal modal-bottom sm:modal-middle">
+  <div className="modal-box text-white">
+    {/* <h3 className="font-bold text-lg">Hello!</h3>
+    <p className="py-4">Press ESC key or click the button below to close</p> */}
+   
+    <UpdateBook/>
+  </div>
+</dialog>
+
+
+
                     <Link onClick={()=>hendleDelete(book?._id)}>
                     <motion.button
                     

@@ -1,12 +1,16 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router";
+import { AuthContext } from "../constext/AuthContext";
+
 
 const TopRating = () => {
   const [books, setBooks] = useState([]);
+ 
 
   useEffect(() => {
+   
     axios('http://localhost:3002/top-rating')
       .then(data => {
         console.log(data.data);
@@ -38,6 +42,8 @@ const TopRating = () => {
     hover: { scale: 1.05, transition: { duration: 0.2, ease: "easeInOut" } },
     tap: { scale: 0.95 },
   };
+
+  
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-10">

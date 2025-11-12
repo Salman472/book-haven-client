@@ -10,7 +10,6 @@ import PrivateRoute from "../privateRoute/PrivateRoute";
 import Profile from "../components/Profile";
 import BookDetails from "../pages/BookDetails";
 import PageNotFound from "../error/PageNotFound";
-
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -48,6 +47,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      
       {
         path: "/login",
         Component: Login,

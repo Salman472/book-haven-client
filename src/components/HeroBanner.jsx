@@ -16,37 +16,41 @@ const HeroBanner = () => {
         <div className="relative container mx-auto flex flex-col items-center text-center justify-center px-6 py-20 md:py-28  ">
           {/* Text Section */}
           <motion.div
-            className=" text-center md:text-left z-10"
+            className=" text-center md:text-left z-10 w-screen"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-           <div className="">
-             <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
-              Explore the World of Knowledge 📚
-            </h1>
-            
-           </div>
-           </motion.div>
-           <motion.div
-           className=" text-center md:text-left z-10"
+            <div className=" w-full text-center flex justify-center items-center ">
+              <h1 className="text-2xl md:text-4xl font-extrabold leading-tight mb-4 ">
+                Explore the World of{" "}
+                <div class="loader ">
+                  <span class="loader-text">Knowladge</span>
+                </div>{" "}
+             
+              </h1>
+            </div>
+          </motion.div>
+          <motion.div
+            className=" text-center md:text-left z-10"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-           >
+          >
             <p className="text-lg md:text-xl text-gray-200 mb-6 text-center">
               Discover thousands of books, journals, and articles — all in one
               place.
             </p>
-
-           </motion.div>
-           <motion.div className=" text-center md:text-left z-10"
+          </motion.div>
+          <motion.div
+            className=" text-center md:text-left z-10"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.6 }}>
-             {/* Search Bar */}
-           
-             <div className="flex justify-center  items-center bg-white/20 rounded-full p-2 backdrop-blur-md w-full max-w-md mx-auto md:mx-0 ">
+            transition={{ duration: 1.6 }}
+          >
+            {/* Search Bar */}
+
+            <div className="flex justify-center  items-center bg-white/20 rounded-full p-2 backdrop-blur-md w-full max-w-md mx-auto md:mx-0 ">
               <Search className="text-white ml-3" />
               <input
                 type="text"
@@ -57,14 +61,15 @@ const HeroBanner = () => {
                 Search
               </button>
             </div>
-          
-           </motion.div>
+          </motion.div>
 
-             <motion.div className=" text-center md:text-left z-10"
+          <motion.div
+            className=" text-center md:text-left z-10"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 2 }}>
-                   {/* hero button */}
+            transition={{ duration: 2 }}
+          >
+            {/* hero button */}
             <div className="flex justify-center items-center mt-10 gap-2">
               <li className="btn-hero">
                 <NavLink
