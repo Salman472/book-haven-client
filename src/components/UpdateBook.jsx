@@ -1,24 +1,59 @@
 import { NotebookPenIcon } from "lucide-react";
-import React, { use, useState } from "react";
+import React, { use } from "react";
 import { AuthContext } from "../constext/AuthContext";
+import axios from "axios";
+import Swal from "sweetalert2";
 
-const UpdateBook = () => {
+const UpdateBook = ({ singleBook, hendleOpenModal }) => {
+  // console.log(singleBook);
   const { user } = use(AuthContext);
 
   // update form
   const handleUpdate = (e) => {
     e.preventDefault();
-    const form=e.target
-    const author=form.author.value
-    const genre=form.genre.value
-    const rating=Number(form.rating.value)
-    if(rating>5){
-        return
+    const form = e.target;
+    const title=form.title.value
+    const author = form.author.value;
+    const genre = form.genre.value;
+    const rating = Number(form.rating.value);
+    if (rating > 5) {
+      return;
     }
-    const summary=form.summary.value
-    const coverImage=form.coverImage.value
-    console.log(author,genre,rating,summary,coverImage);
-    const updateBook={author,genre,rating,summary,coverImage}
+    const summary = form.summary.value;
+    const coverImage = form.coverImage.value;
+    // console.log(author, genre, rating, summary, coverImage);
+    // if(!author && !genre && !rating && summary && coverImage){
+    //   return alert('data not found')
+    // }
+    const updateBook = {
+      title,
+      author,
+      genre,
+      rating,
+      summary,
+      coverImage,
+      userEmail: user.email,
+    };
+    // console.log(updateBook);
+    
+    axios
+      .patch(`http://localhost:3002/my-books/${singleBook?._id}`, updateBook)
+      .then((data) => {
+        // console.log(data.data);
+        if (data.data.modifiedCount) {
+          
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   return (
@@ -59,6 +94,8 @@ const UpdateBook = () => {
           <label className="block text-sm font-medium mb-1">Book Title</label>
           <input
             type="text"
+            defaultValue={singleBook?.title}
+            // value={singleBook?.title}
             name="title"
             placeholder="Enter book title"
             className="w-full p-3 rounded-lg bg-white/10 border border-white/20 focus:ring-2 focus:ring-indigo-400 outline-none"
@@ -71,6 +108,7 @@ const UpdateBook = () => {
           <input
             type="text"
             name="author"
+             defaultValue={singleBook?.author}
             placeholder="Enter author name"
             className="w-full p-3 rounded-lg bg-white/10 border border-white/20 focus:ring-2 focus:ring-indigo-400 outline-none"
           />
@@ -82,6 +120,7 @@ const UpdateBook = () => {
           <input
             type="text"
             name="genre"
+             defaultValue={singleBook?.genre}
             placeholder="Enter genre name"
             className="w-full p-3 rounded-lg bg-white/10 border border-white/20 focus:ring-2 focus:ring-indigo-400 outline-none"
           />
@@ -93,6 +132,8 @@ const UpdateBook = () => {
           <input
             type="text"
             name="rating"
+             defaultValue={singleBook?.rating}
+            // value={singleBook.rating}
             placeholder="Rate 1-5"
             min="1"
             max="5"
@@ -105,6 +146,7 @@ const UpdateBook = () => {
           <label className="block text-sm font-medium mb-1">Summary</label>
           <textarea
             name="summary"
+             defaultValue={singleBook?.summary}
             rows="4"
             placeholder="Write a short summary..."
             className="w-full p-3 rounded-lg bg-white/10 border border-white/20 focus:ring-2 focus:ring-indigo-400 outline-none"
@@ -119,6 +161,7 @@ const UpdateBook = () => {
           <input
             type="text"
             name="coverImage"
+             defaultValue={singleBook?.coverImage}
             placeholder="https://example.com/cover.jpg"
             className="w-full p-3 rounded-lg bg-white/10 border border-white/20 focus:ring-2 focus:ring-indigo-400 outline-none"
           />
@@ -133,11 +176,14 @@ const UpdateBook = () => {
           Update Book
         </button>
 
-        <div className="modal-action">
-          <form method="dialog">
+        <div className="modal-action ">
+          <div method="dialog ">
             {/* if there is a button in form, it will close the modal */}
-            <button className="btn">Close</button>
-          </form>
+
+            <button className="btn w-full py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-2 rounded-xl font-medium hover:opacity-90 transition">
+              Cancel
+            </button>
+          </div>
         </div>
       </form>
     </div>

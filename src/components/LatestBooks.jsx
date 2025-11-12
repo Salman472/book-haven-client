@@ -23,11 +23,12 @@ const LatestBooks = () => {
 
  
   // Variants for smooth staggered animation
+ // Variants for smooth staggered animation
   const containerVariants = {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.15, // delay between each card animation
+        staggerChildren: 0.15,
       },
     },
   };
@@ -86,7 +87,8 @@ const LatestBooks = () => {
             <div className="flex justify-between bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-transparent bg-clip-text select-none tracking-tight">
               <p className="mt-1">{book?.author}</p>
               <p className="mt-1">{book?.rating}</p>
-            </div><Link  to={`/book-details/${book?._id}`}>
+            </div>
+            <Link  to={`/book-details/${book?._id}`}>
             <motion.button
               variants={buttonVariants}
               whileHover="hover"

@@ -11,15 +11,15 @@ import {
   X,
 } from "lucide-react";
 import { use, useEffect, useState } from "react";
-import { Link, Navigate, NavLink, useNavigate } from "react-router";
+import { Link, Navigate, NavLink } from "react-router";
 import { AuthContext } from "../constext/AuthContext";
 import Swal from "sweetalert2";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
-import { color } from "framer-motion";
+
 
 const Navbar = () => {
-  const { user, logOutUser, loading } = use(AuthContext);
+  const { user, logOutUser } = use(AuthContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
  
@@ -138,8 +138,8 @@ const Navbar = () => {
   // }
 
   return (
-    <div className=" ">
-      <nav className="navbar  mx-auto fixed top-0   z-10 flex justify-between items-center px-6 py-3 bg-white dark:bg-gray-900 border-b border-gray-200">
+    <div className="">
+      <nav className="  mx-auto w-full fixed top-0   z-10 flex justify-between items-center px-6 py-3 bg-white dark:bg-gray-900 border-b border-gray-200">
         <div className="flex items-center gap-2">
           <div className="flex gap-3 items-center relative lg:hidden">
             {/* Profile Button */}
