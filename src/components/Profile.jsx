@@ -10,7 +10,7 @@ const Profile = () => {
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="max-w-sm mx-auto mt-20 bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 overflow-hidden p-6 text-center"
+      className="max-w-sm mx-auto mt-20 bg-gray-800 backdrop-blur-xl rounded-2xl shadow-xl border border-white/20 overflow-hidden p-6 text-center"
     >
       <motion.img
         src={user?.photoURL || "https://i.ibb.co/2FxYgcz/default-avatar.png"}

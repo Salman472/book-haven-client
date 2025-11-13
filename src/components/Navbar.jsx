@@ -138,7 +138,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className="">
+    <div className="bg-gray-900">
       <nav className="  mx-auto w-full fixed top-0   z-10 flex justify-between items-center px-6 py-3 bg-white dark:bg-gray-900 border-b border-gray-200">
         <div className="flex items-center gap-2">
           <div className="flex gap-3 items-center relative lg:hidden">
@@ -149,12 +149,12 @@ const Navbar = () => {
               className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 ml-[-4px]"
             >
               <span className="sr-only">Open user menu</span>
-              {dropdownOpen ? <X /> : <Menu />}
+              {dropdownOpen ? <X className="text-white" /> : <Menu className="text-white" />}
             </button>
 
             {/* Dropdown menu */}
             {dropdownOpen && (
-              <div className="absolute top-12 left-0 z-50 w-44 text-base list-none divide-y divide-gray-100 rounded-lg shadow-sm bg-white/30 backdrop-blur-3xl ">
+              <div className="absolute top-12 left-0 z-50 w-44 text-base list-none divide-y divide-gray-100 rounded-lg shadow-sm bg-gray-900 backdrop-blur-3xl ">
                 <h1 className=" text-xl md:text-4xl font-extrabold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-transparent bg-clip-text select-none tracking-tight">
                   The <span className="font-light">Book</span>{" "}
                   <span className="italic text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.6)]">
@@ -219,7 +219,7 @@ const Navbar = () => {
 
               {/* Dropdown menu */}
               {isDropdownOpen && (
-                <div className="absolute top-12 right-0 z-50 w-44 text-base list-none divide-y divide-gray-100 rounded-lg shadow-sm bg-white/30 backdrop-blur-3xl ">
+                <div className="absolute top-12 right-0 z-50 w-44 text-base list-none divide-y divide-gray-100 rounded-lg shadow-sm bg-gray-900 backdrop-blur-3xl ">
                   <div className="px-4 py-3">
                     <span className="block text-sm font-semibold text-gray-900 dark:text-white">
                       {user.displayName}
@@ -318,7 +318,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                   to={"/register"}
-                  className="btn-primary flex items-center "
+                  className="btn-primary flex items-center hidden sm:flex"
                 >
                   Register
                   <ArrowDownLeft className="h-4 w-5 rotate-180 font-semibold" />

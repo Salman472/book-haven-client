@@ -15,7 +15,7 @@ const MyBooks = () => {
   const [originalBooks, setOriginalBooks] = useState([]);
   const [sortOption, setSortOption] = useState("normal");
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { user } = use(AuthContext);
+  const { user, loading } = use(AuthContext);
   //   console.log(books);
   // data load
 
@@ -141,15 +141,23 @@ const MyBooks = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          updateBook._id = data.id;
-          const update = [...books, updateBook];
-          setBooks(update);
+          // updateBook._id = data.id;
+          // const update = [...books, updateBook];
+          // setBooks(update);
+        const updatedBooks = books.map((book) =>
+        book._id === singleBook._id ? { ...book, ...updateBook } : book
+      );
+      setBooks(updatedBooks);
         }
       })
       .catch((error) => {
         console.log(error.message);
       });
   };
+
+  if(loading){
+    return <DetailsPage/>
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 mt-14">
@@ -443,16 +451,16 @@ const MyBooks = () => {
                                   Update Book
                                 </button>
 
-                                <div className="modal-action ">
-                                  <div method="dialog ">
-                                    {/* if there is a button in form, it will close the modal */}
-
-                                    <button className="btn w-full py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-2 rounded-xl font-medium hover:opacity-90 transition">
-                                      Cancel
-                                    </button>
-                                  </div>
-                                </div>
+                                
                               </form>
+                              <div className="modal-action">
+  {/* ✅ Correct way to close modal */}
+  <form method="dialog">
+    <button className="btn w-full py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-2 rounded-xl font-medium hover:opacity-90 transition">
+      Cancel
+    </button>
+  </form>
+</div>
                             </div>
                           </div>
                         </dialog>

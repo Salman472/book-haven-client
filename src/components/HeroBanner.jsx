@@ -57,10 +57,11 @@ const HeroBanner = () => {
                 placeholder="Search for books, authors..."
                 className="flex-1 bg-transparent outline-none text-white placeholder-gray-300 px-3 "
               />
-              <button className="bg-white text-purple-600 font-semibold px-5 py-2 rounded-full hover:bg-gray-200 transition">
+              <button className="bg-white text-purple-600 font-semibold px-3 py-1 sm:px-5 sm:py-2 rounded-full hover:bg-gray-200 transition">
                 Search
               </button>
             </div>
+            
           </motion.div>
 
           <motion.div

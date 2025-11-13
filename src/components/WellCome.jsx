@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 const WelcomeSection = () => {
   return (
-    <section className="relative bg-gradient-to-b from-indigo-950 via-purple-900 to-slate-900 text-white py-20 px-6 md:px-16 overflow-hidden">
+    <section className="relative bg-gradient-to-b z-0 from-indigo-950 via-purple-900 to-slate-900 text-white py-20 px-6 md:px-16 overflow-hidden">
       {/* Floating background circles */}
       <motion.div
         className="absolute top-10 left-10 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl"

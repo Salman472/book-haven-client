@@ -60,7 +60,7 @@ const AddBook = () => {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="backdrop-blur-2xl bg-white/10 border border-white/20 rounded-2xl p-8 w-full max-w-md shadow-2xl"
+        className="backdrop-blur-2xl bg-gray-900 border border-white/20 rounded-2xl p-8 w-full max-w-md shadow-2xl"
       >
         <h2 className="text-3xl font-semibold text-center text-white mb-6">
           📚 Add a New Book

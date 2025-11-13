@@ -6,7 +6,7 @@ import HeroBanner from "./HeroBanner";
 
 const Hero = () => {
   return (
-    <div className="hero ">
+    <div className="hero z-0">
         <div className="overlay"></div> 
       <video src={heroVideo} autoPlay loop muted className="relative h-screen">
         <div className="absolute inset-0 bg-blue-950 opacity-30">
