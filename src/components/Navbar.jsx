@@ -138,15 +138,15 @@ const Navbar = () => {
   }
 
   return (
-    <div className="bg-gray-900">
-      <nav className="  mx-auto w-full fixed top-0   z-10 flex justify-between items-center px-6 py-3 bg-white dark:bg-gray-900 border-b border-gray-200">
+    <div className="">
+      <nav className="  mx-auto w-full fixed top-0  bg-gray-900 z-10 flex justify-between items-center px-6 py-3 bg-white dark:bg-gray-900 border-b border-gray-200">
         <div className="flex items-center gap-2">
           <div className="flex gap-3 items-center relative lg:hidden">
             {/* Profile Button */}
             <button
               onClick={toggleDropdownBtn}
               type="button"
-              className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 ml-[-4px]"
+              className="flex text-sm bg-gray-800 text-white rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 ml-[-4px]"
             >
               <span className="sr-only">Open user menu</span>
               {dropdownOpen ? <X className="text-white" /> : <Menu className="text-white" />}
@@ -221,7 +221,7 @@ const Navbar = () => {
               {isDropdownOpen && (
                 <div className="absolute top-12 right-0 z-50 w-44 text-base list-none divide-y divide-gray-100 rounded-lg shadow-sm bg-gray-900 backdrop-blur-3xl ">
                   <div className="px-4 py-3">
-                    <span className="block text-sm font-semibold text-gray-900 dark:text-white">
+                    <span className="block text-sm font-semibold bg-gray-800 text-white dark:text-white">
                       {user.displayName}
                     </span>
                     <span className="block text-sm text-gray-700 truncate dark:text-gray-200">
