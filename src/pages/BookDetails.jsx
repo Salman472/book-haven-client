@@ -2,32 +2,26 @@ import { useNavigate, useLoaderData } from "react-router";
 import { motion } from "framer-motion";
 
 import Comment from "../components/Comment";
+import { use } from "react";
+import { AuthContext } from "../constext/AuthContext";
 
 const BookDetails = () => {
+  const {loading}=use(AuthContext)
   const navigate = useNavigate();
   const book = useLoaderData();
   console.log(book);
-  // const {user}=use(AuthContext)
-  // const initData=use(userPrommise)
-  // console.log(initData);
-  // const [comments,setComments]=useState([])
-  // useEffect(()=>{
-  //   axios(`https://book-haven-server-bay.vercel.app/all-books/new-comment/${book._id}`)
-  //   .then(data=>{
-  //     console.log(data.data);
-  //     setComments(data.data)
-  //   })
-  //   .catch(error=>{
-  //     console.log(error.message);
-  //   })
-  // },[book._id])
-  // const [comments, setComments] = useState([]);
-  // const [newComment, setNewComment] = useState("");
-
+  
   if (!book) {
     return (
       <div className="flex items-center justify-center h-screen text-white">
         Book not found.
+      </div>
+    );
+  }
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center">
+        <span className="loading loading-dots loading-xl text-error"></span>
       </div>
     );
   }

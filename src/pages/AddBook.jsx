@@ -30,6 +30,7 @@ const AddBook = () => {
       coverImage,
       email: user.email,
       name: user.displayName,
+      photoURL:user.photoURL
     };
     axios
       .post("https://book-haven-server-bay.vercel.app/add-book", newBook)
