@@ -5,6 +5,8 @@ A haven for readers where you can **explore, manage, and share** your favorite b
 
 ---
 
+![logo](https://github.com/Salman472/book-haven-client/blob/main/Screenshot%202025-11-19%20151317.png)
+
 ## 🌟 Overview
 
 **The Book Haven** is a full-featured **React-based Book Management Application** that empowers users to create their own personal online library.  
