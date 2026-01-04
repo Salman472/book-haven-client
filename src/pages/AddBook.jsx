@@ -60,51 +60,52 @@ const AddBook = () => {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="backdrop-blur-2xl bg-gray-900 border border-white/20 rounded-2xl p-8 w-full max-w-md shadow-2xl"
+        className="backdrop-blur-2xl  border-white/20 rounded-2xl p-8 w-full max-w-md shadow-2xl"
       >
-        <h2 className="text-3xl font-semibold text-center text-white mb-6">
+        <h2 className="text-3xl font-semibold text-center mb-6">
           📚 Add a New Book
         </h2>
 
         {/* Title */}
         <div className="mb-4">
-          <label className="block text-sm text-gray-300 mb-2">Title</label>
+          <label className="block text-sm  mb-2">Title</label>
           <input
             type="text"
             name="title"
             required
-            className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500"
+            className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/30   focus:outline-none focus:ring-2 focus:ring-pink-500"
             placeholder="Enter book title"
           />
         </div>
 
         {/* Author */}
         <div className="mb-4">
-          <label className="block text-sm text-gray-300 mb-2">Author</label>
+          <label className="block text-sm  mb-2">Author</label>
           <input
             type="text"
             name="author"
             required
-            className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/30 
+           focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter author name"
           />
         </div>
 
         {/* Genre */}
         <div className="mb-4">
-          <label className="block text-sm text-gray-300 mb-2">Genre</label>
+          <label className="block text-sm  mb-2">Genre</label>
           <input
             type="text"
             name="genre"
             required
-            className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/30  focus:outline-none focus:ring-2 focus:ring-purple-500"
             placeholder="Enter genre"
           />
         </div>
 
         {/* Rating */}
         <div className="mb-4">
-          <label className="block text-sm text-gray-300 mb-2">
+          <label className="block text-sm  mb-2">
             Rating (1–5)
           </label>
           <input
@@ -114,33 +115,37 @@ const AddBook = () => {
             step="0.1"
             min="0"
             max="5"
-            className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/30 
+             focus:outline-none focus:ring-2 focus:ring-green-500"
             placeholder="Enter rating"
           />
         </div>
 
         {/* Summary */}
         <div className="mb-4">
-          <label className="block text-sm text-gray-300 mb-2">Summary</label>
+          <label className="block text-sm 
+           mb-2">Summary</label>
           <textarea
             name="summary"
             required
             rows="3"
-            className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/30 
+             focus:outline-none focus:ring-2 focus:ring-yellow-500"
             placeholder="Write a short summary..."
           ></textarea>
         </div>
 
         {/* Cover Image URL */}
         <div className="mb-4">
-          <label className="block text-sm text-gray-300 mb-2">
+          <label className="block text-sm 
+           mb-2">
             Cover Image URL
           </label>
           <input
             type="text"
             name="coverImage"
             required
-            className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/30  focus:outline-none focus:ring-2 focus:ring-cyan-500"
             placeholder="Paste image URL"
           />
         </div>

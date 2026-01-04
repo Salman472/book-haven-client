@@ -63,9 +63,9 @@ export const router = createBrowserRouter([
             `https://book-haven-server-bay.vercel.app/all-books/${params.id}`
           ),
         element: (
-          <PrivateRoute>
+          
             <BookDetails />
-          </PrivateRoute>
+          
         ),
       },
       {

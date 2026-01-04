@@ -17,9 +17,9 @@ const AboutSection = () => {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.8 }}
-        className="text-lg sm:text-xl text-gray-300 text-center max-w-3xl mx-auto leading-relaxed"
+        className="text-lg sm:text-xl  text-center max-w-3xl mx-auto leading-relaxed"
       >
-        Welcome to <span className="font-semibold text-white">The Book Haven</span> — your
+        Welcome to <span className="font-semibold ">The Book Haven</span> — your
         digital escape into the world of stories, knowledge, and imagination.
         Here, readers can explore the latest releases, timeless classics, and
         handpicked recommendations, all designed to make reading more enjoyable

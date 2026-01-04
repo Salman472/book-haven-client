@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 const WelcomeSection = () => {
   return (
-    <section className="relative bg-gradient-to-b z-0 from-indigo-950 via-purple-900 to-slate-900 text-white py-20 px-6 md:px-16 overflow-hidden">
+    <section className="relative  py-20 px-6 md:px-16 overflow-hidden z-0">
       {/* Floating background circles */}
       <motion.div
         className="absolute top-10 left-10 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl"
@@ -60,7 +60,7 @@ const WelcomeSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 1 }}
-          className="text-gray-300 max-w-2xl mx-auto leading-relaxed"
+          className="max-w-2xl mx-auto leading-relaxed"
         >
           Your ultimate destination for exploring, sharing, and managing your
           favorite books. Discover new stories, organize your personal library,

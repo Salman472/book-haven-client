@@ -119,9 +119,9 @@ const AllBooks = () => {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="min-w-full text-white border border-gray-700 rounded-xl overflow-hidden">
+        <table className="min-w-full  border border-gray-700 rounded-xl overflow-hidden">
           <thead>
-            <tr className="bg-gray-800 text-left">
+            <tr className="border text-left">
               <th className="px-4 py-3">Cover</th>
               <th className="px-4 py-3">Title</th>
               <th className="px-4 py-3">Author</th>
@@ -143,7 +143,7 @@ const AllBooks = () => {
                     delay: index * 0.2,
                     ease: "easeOut",
                   }}
-                  className="border-b border-gray-700  hover:bg-gray-800 transition "
+                  className="border-b border-gray-700  hover:bg-gray-500 transition "
                 >
                   <td className="px-4 py-3">
                     <motion.img
@@ -154,13 +154,13 @@ const AllBooks = () => {
                       transition={{ duration: 0.3 }}
                     />
                   </td>
-                  <td className="px-4 py-3 font-semibold text">
+                  <td className="px-4 py-3 font-semibold ">
                     {book?.title}
                   </td>
-                  <td className="px-4 py-3 text">{book?.author}</td>
-                  <td className="px-4 py-3 text">{book?.genre}</td>
-                  <td className="px-4 py-3 text">{book?.rating}</td>
-                  <td className="px-4 py-3 text">
+                  <td className="px-4 py-3 ">{book?.author}</td>
+                  <td className="px-4 py-3 ">{book?.genre}</td>
+                  <td className="px-4 py-3 ">{book?.rating}</td>
+                  <td className="px-4 py-3 ">
                     <Link to={`/book-details/${book?._id}`}>
                       <motion.button
                         whileHover={{

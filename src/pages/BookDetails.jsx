@@ -41,7 +41,7 @@ const BookDetails = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="bg-gray-900 rounded-2xl p-6 shadow-lg flex flex-col md:flex-row gap-6"
+          className=" rounded-2xl p-6 shadow-lg flex flex-col md:flex-row gap-6"
         >
           {/* Book Cover */}
           <motion.img
@@ -53,11 +53,11 @@ const BookDetails = () => {
           />
 
           {/* Book Info */}
-          <div className="flex-1 text-white">
+          <div className="flex-1 ">
             <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-pink-500 to-indigo-500 bg-clip-text text-transparent">
               {book?.title}
             </h1>
-            <p className="text-gray-400 mb-4">by {book?.author}</p>
+            <p className=" mb-4">by {book?.author}</p>
 
             <div className="flex gap-4 mb-4">
               <span className="bg-indigo-600 px-3 py-1 rounded-full text-sm font-medium">
@@ -68,11 +68,11 @@ const BookDetails = () => {
               </span>
             </div>
 
-            <p className="text-gray-300 mb-6">{book?.summary}</p>
+            <p className=" mb-6">{book?.summary}</p>
 
-            <p className="text-gray-400 mb-4">
+            <p className=" mb-4">
               Contributed by:{" "}
-              <span className="text-white">{book?.userEmail}</span>
+              <span className="">{book?.userEmail}</span>
             </p>
 
             {/* Actions */}

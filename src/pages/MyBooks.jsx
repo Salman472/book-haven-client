@@ -9,7 +9,6 @@ import { AuthContext } from "../constext/AuthContext";
 import Swal from "sweetalert2";
 import EmptyBook from "../components/EmptyBook";
 
-
 const MyBooks = () => {
   const [books, setBooks] = useState([]);
   const [originalBooks, setOriginalBooks] = useState([]);
@@ -144,10 +143,10 @@ const MyBooks = () => {
           // updateBook._id = data.id;
           // const update = [...books, updateBook];
           // setBooks(update);
-        const updatedBooks = books.map((book) =>
-        book._id === singleBook._id ? { ...book, ...updateBook } : book
-      );
-      setBooks(updatedBooks);
+          const updatedBooks = books.map((book) =>
+            book._id === singleBook._id ? { ...book, ...updateBook } : book
+          );
+          setBooks(updatedBooks);
         }
       })
       .catch((error) => {
@@ -155,8 +154,8 @@ const MyBooks = () => {
       });
   };
 
-  if(loading){
-    return <DetailsPage/>
+  if (loading) {
+    return <DetailsPage />;
   }
 
   return (
@@ -175,7 +174,7 @@ const MyBooks = () => {
       {/* Dropdown Sort Button */}
       <div className=" flex justify-between items-center">
         <div class="text-center my-12">
-          <h1 class="text-2xl font-extrabold leading-tight tracking-tight bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 bg-clip-text text-transparent hidden sm:flex">
+          <h1 class="text-2xl font-extrabold leading-tight tracking-tight  hidden sm:flex">
             My Books Collection : {books.length}
           </h1>
           <h1 class="text-xl font-extrabold leading-tight tracking-tight bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 bg-clip-text text-transparent sm:hidden">
@@ -246,9 +245,9 @@ const MyBooks = () => {
         <EmptyBook />
       ) : (
         <div className="overflow-x-auto">
-          <table className="min-w-full text-white border border-gray-700 rounded-xl overflow-hidden">
+          <table className="min-w-full  border  rounded-xl overflow-hidden">
             <thead>
-              <tr className="bg-gray-800 text-left">
+              <tr className=" text-left">
                 <th className="px-4 py-3">Cover</th>
                 <th className="px-4 py-3">Title</th>
                 <th className="px-4 py-3">Author</th>
@@ -256,6 +255,7 @@ const MyBooks = () => {
                 <th className="px-4 py-3">Rating</th>
                 <th className="px-4 py-3 text-center">Action</th>
               </tr>
+             
             </thead>
 
             <tbody>
@@ -270,7 +270,7 @@ const MyBooks = () => {
                       delay: index * 0.2,
                       ease: "easeOut",
                     }}
-                    className="border-b border-gray-700  hover:bg-gray-800 transition "
+                    className="border-b border-gray-700  hover:bg-gray-400 transition "
                   >
                     <td className="px-4 py-3">
                       <motion.img
@@ -281,13 +281,13 @@ const MyBooks = () => {
                         transition={{ duration: 0.3 }}
                       />
                     </td>
-                    <td className="px-4 py-3 font-semibold text">
+                    <td className="px-4 py-3 font-semibold ">
                       {book?.title}
                     </td>
-                    <td className="px-4 py-3 text">{book?.author}</td>
-                    <td className="px-4 py-3 text">{book?.genre}</td>
-                    <td className="px-4 py-3 text">{book?.rating}</td>
-                    <td className="px-4 py-3 text ">
+                    <td className="px-4 py-3 ">{book?.author}</td>
+                    <td className="px-4 py-3 ">{book?.genre}</td>
+                    <td className="px-4 py-3 ">{book?.rating}</td>
+                    <td className="px-4 py-3  ">
                       <div className="flex justify-center items-center gap-2 h-full">
                         <Link onClick={() => hendleOpenModal(book)}>
                           <motion.button
@@ -303,17 +303,14 @@ const MyBooks = () => {
                           </motion.button>
                         </Link>
 
-                        {/* open model to update product */}
-
-                        {/* Open the modal using document.getElementById('ID').showModal() method */}
+                       
 
                         <dialog
                           ref={modalRef}
                           className="modal modal-bottom sm:modal-middle"
                         >
                           <div className="modal-box text-white bg-black">
-                            {/* <h3 className="font-bold text-lg">Hello!</h3>
-    <p className="py-4">Press ESC key or click the button below to close</p> */}
+                            
 
                             <div className="max-w-2xl mx-auto p-8 bg-transparent text-white rounded-2xl shadow-lg mt-10">
                               <h2 className="text-3xl font-bold text-center mb-6">
@@ -450,17 +447,15 @@ const MyBooks = () => {
                                 >
                                   Update Book
                                 </button>
-
-                                
                               </form>
                               <div className="modal-action">
-  {/* ✅ Correct way to close modal */}
-  <form method="dialog">
-    <button className="btn w-full py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-2 rounded-xl font-medium hover:opacity-90 transition">
-      Cancel
-    </button>
-  </form>
-</div>
+                                {/* ✅ Correct way to close modal */}
+                                <form method="dialog">
+                                  <button className="btn w-full py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-2 rounded-xl font-medium hover:opacity-90 transition">
+                                    Cancel
+                                  </button>
+                                </form>
+                              </div>
                             </div>
                           </div>
                         </dialog>

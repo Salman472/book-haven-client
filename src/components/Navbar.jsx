@@ -7,6 +7,7 @@ import {
   LogIn,
   Menu,
   PaletteIcon,
+  UserPen,
   UserPenIcon,
   X,
 } from "lucide-react";
@@ -40,12 +41,12 @@ const Navbar = () => {
   const links = (
     <>
       <li className="list ">
-        <NavLink className={"flex items-center gap-[2px]"} to="/">
+        <NavLink className={"flex items-center gap-1"} to="/">
           <House className="h-4 w-4" /> Home
         </NavLink>
       </li>
       <li className="list">
-        <NavLink className={"flex items-center gap-[2px]"} to={"/all-books"}>
+        <NavLink className={"flex items-center gap-1"} to={"/all-books"}>
           <BookOpenText className="h-4 w-4" />
           All Books
         </NavLink>
@@ -53,17 +54,24 @@ const Navbar = () => {
       {user && (
         <>
           <li className="list">
-            <NavLink className={"flex items-center gap-[2px]"} to={"/add-book"}>
+            <NavLink className={"flex items-center gap-1"} to={"/add-book"}>
               <BadgePlus className="h-4 w-4" />
               Add Book
             </NavLink>
           </li>
           <li className="list">
-            <NavLink className={"flex items-center gap-[2px]"} to="/my-books">
+            <NavLink className={"flex items-center gap-1"} to="/my-books">
               <BookText className="h-4 w-4" />
               My Books
             </NavLink>
           </li>
+          <li className="list">
+            <NavLink className={"flex items-center gap-1"} to="/profile">
+              <UserPen className="h-4 w-4" />
+              Profile
+            </NavLink>
+          </li>
+          
         </>
       )}
     </>
@@ -71,7 +79,7 @@ const Navbar = () => {
   const linkss = (
     <>
       <li className="linkss">
-        <NavLink className={"flex items-center gap-[2px]"} to="/">
+        <NavLink className={"flex items-center gap-1"} to="/">
           <House className="h-4 w-4" />
           Home
         </NavLink>
@@ -85,7 +93,7 @@ const Navbar = () => {
       {user && (
         <>
           <li className="linkss">
-            <NavLink className={"flex items-center gap-[2px]"} to="/add-book">
+            <NavLink className={"flex items-center gap-1"} to="/add-book">
               <BadgePlus className="h-4 w-4" />
               Add Book
             </NavLink>
@@ -94,6 +102,12 @@ const Navbar = () => {
             <NavLink className={"flex items-center gap-[2px]"} to="/my-books">
               <BookText className="h-4 w-4" />
               My Books
+            </NavLink>
+          </li>
+          <li className="linkss">
+            <NavLink className={"flex items-center gap-[2px]"} to="/profile">
+              <UserPen className="h-4 w-4" />
+              Profile
             </NavLink>
           </li>
         </>

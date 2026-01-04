@@ -57,7 +57,7 @@ const Comment = () => {
   };
   return (
     <>
-      <div className="mt-10 bg-gray-900 rounded-2xl p-6 shadow-lg text-white">
+      <div className="mt-10  rounded-2xl p-6 shadow-lg ">
         <h2 className="text-2xl font-bold mb-4">Comments {comments?.length}</h2>
 
         {/* Add Comment */}
@@ -70,7 +70,7 @@ const Comment = () => {
               name="comment"
               type="text"
               placeholder="Write a comment..."
-              className="flex-1 col-span-9 bg-gray-800 px-4 py-2 rounded-lg text-white placeholder-gray-400 focus:outline-none"
+              className="flex-1 col-span-9  px-4 py-2 rounded-lg   "
               // value={newComment}
               // onChange={(e) => setNewComment(e.target.value)}
             />
@@ -85,11 +85,11 @@ const Comment = () => {
 
         {/* Comments List */}
         {comments?.length === 0 ? (
-          <p className="text-gray-400">No comments yet.</p>
+          <p className="">No comments yet.</p>
         ) : (
           <ul className="space-y-4">
             {comments?.map((comment) => (
-              <li key={comment._id} className="bg-gray-800 p-4 rounded-lg">
+              <li key={comment._id} className="border p-4 rounded-lg">
                 <div className="flex items-center gap-2 mb-2">
                   <img
                     className="h-8 w-8 rounded-full"
@@ -98,7 +98,7 @@ const Comment = () => {
                   />
                   <p className="font-semibold">{comment.name}</p>
                 </div>
-                <p className="text-gray-300">{comment.text}</p>
+                <p className="">{comment.text}</p>
               </li>
             ))}
           </ul>
