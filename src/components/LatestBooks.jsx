@@ -49,7 +49,7 @@ const LatestBooks = () => {
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-10">
+    <section className="max-w-7xl mx-auto px-4 ">
       {/* Animated Heading */}
       <motion.h2
         initial={{ opacity: 0, y: -30 }}

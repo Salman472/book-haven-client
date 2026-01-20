@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const AboutSection = () => {
   return (
-    <section className="max-w-6xl mx-auto px-4 py-16">
+    <section className="max-w-6xl mx-auto px-4 ">
       <motion.h2
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}

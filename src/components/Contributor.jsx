@@ -1,12 +1,19 @@
-import React from 'react';
+import React from "react";
 
-const Contributor = ({contributor}) => {
-    console.log(contributor);
-    return (
-        <div className='flex justify-center items-center'>
-           <img className='border border-red-600' src={contributor.photoURL} alt="" />
-        </div>
-    );
+const Contributor = ({ contributor }) => {
+  if (!contributor?.photoURL) return null;
+
+  return (
+    
+      <div className="">
+        <img
+          src={contributor.photoURL}
+          alt={contributor.name || "Contributor"}
+          className="min-h-24 min-w-24 max-h-32 max-w-32 rounded-full object-cover border-2 border-gray-100"
+        />
+    
+    </div>
+  );
 };
 
 export default Contributor;

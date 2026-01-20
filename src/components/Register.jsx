@@ -1,6 +1,6 @@
 import React, { use, useState } from "react";
 import heroVideo from "../assets/book.mp4";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -10,58 +10,110 @@ import { getFirebaseErrorMessage } from "./Error";
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const { googleSignIn, createUser, updateUser, setUser,user } = use(AuthContext);
+  const { googleSignIn, createUser, updateUser, setUser,user, setLoading } = use(AuthContext);
+  const location = useLocation();
   const navigate = useNavigate();
   // register user
-   const hendleRegister = (e) => {
-      e.preventDefault();
+  //  const hendleRegister = (e) => {
+  //     e.preventDefault();
   
-      const name = e.target.name.value;
-      const photo = e.target.photo.value;
-      const email = e.target.email.value;
-      const password = e.target.password.value;
-      // console.log(name, photo, email, password);
-      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\d]{6,10}$/;
+  //     const name = e.target.name.value;
+  //     const photo = e.target.photo.value;
+  //     const email = e.target.email.value;
+  //     const password = e.target.password.value;
+  //     // console.log(name, photo, email, password);
+  //     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\d]{6,10}$/;
   
-      if (!passwordRegex.test(password)) {
-        Swal.fire({
-          icon: "warning",
-          title: "Weak Password ⚠️",
-          text: "Password must contain at least one uppercase one lowercase letter and min 6 chars and max 10 chars.",
-          confirmButtonColor: "#3085d6",
-        });
-        return;
-      }
-  
-      
-      createUser(email, password)
-        .then((result) => {
-          const user=result.user
-        updateUser({displayName:name,photoURL:photo})
-        .then(()=>{
-           setUser({...user,displayName:name,photoURL:photo})
-           navigate('/')
-        })
-        .catch(()=>{
-        // console.log(error);
-        setUser(user)
-      })
+  //     if (!passwordRegex.test(password)) {
+  //       Swal.fire({
+  //         icon: "warning",
+  //         title: "Weak Password ⚠️",
+  //         text: "Password must contain at least one uppercase one lowercase letter and min 6 chars and max 10 chars.",
+  //         confirmButtonColor: "#3085d6",
+  //       });
+  //       return;
+  //     }
   
       
+  //     createUser(email, password)
+  //       .then((result) => {
+  //         const user=result.user
+  //       updateUser({displayName:name,photoURL:photo})
+  //       .then(()=>{
+  //          setUser({...user,displayName:name,photoURL:photo})
+  //          setLoading(false)
+  //          navigate('/')
+  //       })
+  //       .catch(()=>{
+  //       // console.log(error);
+  //       setUser(user)
+  //     })
+  
+      
+  //         Swal.fire({
+  //           title: "Registation Successful",
+  //           icon: "success",
+  //           text: "Your password meets all requirements!",
+  //           draggable: true,
+  //         });
+  //         navigate("/login");
+  //       })
+  //       .catch((error) => {
+  //         const message = getFirebaseErrorMessage(error);
+  //             Swal.fire("Sign up failed", message, "error");
+  //       setUser(user)
+  //       });
+  //   };
+  const hendleRegister = (e) => {
+  e.preventDefault();
+
+  const name = e.target.name.value;
+  const photo = e.target.photo.value;
+  const email = e.target.email.value;
+  const password = e.target.password.value;
+
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\d]{6,10}$/;
+  if (!passwordRegex.test(password)) {
+    Swal.fire({
+      icon: "warning",
+      title: "Weak Password ⚠️",
+      text: "Password must contain at least one uppercase, one lowercase letter and be 6-10 chars long.",
+      confirmButtonColor: "#3085d6",
+    });
+    return;
+  }
+
+  setLoading(true); // start loading
+
+  createUser(email, password)
+    .then((result) => {
+      const user = result.user;
+      updateUser({ displayName: name, photoURL: photo })
+        .then(() => {
+          setUser({ ...user, displayName: name, photoURL: photo });
+          setLoading(false);
           Swal.fire({
-            title: "Registation Successful",
+            title: "Registration Successful",
             icon: "success",
-            text: "Your password meets all requirements!",
+            text: "Your account has been created!",
             draggable: true,
           });
-          navigate("/login");
+          navigate("/"); // go home after successful registration
         })
         .catch((error) => {
-          const message = getFirebaseErrorMessage(error);
-              Swal.fire("Sign up failed", message, "error");
-        setUser(user)
+          console.error(error);
+          setUser(user); 
+          setLoading(false); // make sure to stop loading on error
+          Swal.fire("Error", "Failed to update profile", "error");
         });
-    };
+    })
+    .catch((error) => {
+      setLoading(false); // stop loading on sign up error
+      const message = getFirebaseErrorMessage(error);
+      Swal.fire("Sign up failed", message, "error");
+    });
+};
+
   // google signin
   const hendleGoogleSignIn = () => {
     googleSignIn()
@@ -74,6 +126,7 @@ const Register = () => {
             icon: "success",
             draggable: true,
           });
+          navigate(location.state || "/")
         }
       })
       .catch((error) => {

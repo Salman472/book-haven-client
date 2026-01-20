@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 const WelcomeSection = () => {
   return (
-    <section className="relative  py-20 px-6 md:px-16 overflow-hidden z-0">
+    <section className="relative   px-6 md:px-16 overflow-hidden z-0">
       {/* Floating background circles */}
       <motion.div
         className="absolute top-10 left-10 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl"

@@ -45,8 +45,8 @@ video {
   border: 2px solid transparent;
   transition: all 0.7s ease;
   white-space: nowrap;
-  color: #162530;
-  background: rgba(11, 195, 209, 0.8);
+  color: white;
+  
 }
 .list a.active {
   padding: 3px 20px;
@@ -54,8 +54,9 @@ video {
   border: 2px solid transparent;
   transition: all 0.7s ease;
   white-space: nowrap;
-  color: #162530;
-  background: rgba(11, 195, 209, 0.8);
+  /* color: #162530; */
+  background-color: #7c3aed;
+
 }
 
 /* login btn */
@@ -65,15 +66,16 @@ video {
   border-radius: 5px;
   font-weight: 500;
 
-  background: rgba(11, 195, 209, 0.8);
+  background-color: #7c3aed;
+;
 }
 .btn-primary:hover {
   border-radius: 20px;
   border: 2px solid transparent;
   transition: all 0.5s ease-in;
 
-  color: #162530;
-  background: rgba(11, 195, 209, 0.8);
+  /* color: #162530; */
+  background-color: #7c3aed;
 }
 /* hero bannder btn */
 .btn-hero {

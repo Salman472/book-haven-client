@@ -19,25 +19,25 @@ const Footer = () => {
   </li>
   </>
   return (
-    <footer className="relative  py-12 mt-20">
+    <footer className="relative  py-12 mt-20 z-0">
       {/* Overlay with slight light tint for contrast */}
       <div className="absolute inset-0 "></div>
 
       <div className="relative container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 z-10">
         {/* Column 1: Logo + Description */}
         <div>
-          <div className="flex items-center mb-4">
+          <div className="flex items-center mb-4 gap-2">
             <Link to={"/"}>
             <img
-              className="h-10 w-12 ml-3"
+              className=" h-5 w-6 md:h-10 md:w-12 ml-3"
               src="https://i.ibb.co.com/q3SHZrK5/BOOK-HEAVEN.png"
               alt=""
             />
           </Link>
             <Link to={"/"}>
-            <h1 className="flex text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-transparent bg-clip-text select-none tracking-tight">
+            <h1 className="flex text-xl sm:text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-transparent bg-clip-text select-none tracking-tight">
               The <span className="font-light">Book</span>{" "}
-              <span className="italic text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.6)]">
+              <span className="">
                 Hoven
               </span>
             </h1>

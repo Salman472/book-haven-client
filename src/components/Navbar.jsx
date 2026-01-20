@@ -40,12 +40,12 @@ const Navbar = () => {
 
   const links = (
     <>
-      <li className="list ">
+      <li className="list hover:bg-purple-600 ">
         <NavLink className={"flex items-center gap-1"} to="/">
           <House className="h-4 w-4" /> Home
         </NavLink>
       </li>
-      <li className="list">
+      <li className="list hover:bg-purple-600">
         <NavLink className={"flex items-center gap-1"} to={"/all-books"}>
           <BookOpenText className="h-4 w-4" />
           All Books
@@ -53,19 +53,19 @@ const Navbar = () => {
       </li>
       {user && (
         <>
-          <li className="list">
+          <li className="list hover:bg-purple-600">
             <NavLink className={"flex items-center gap-1"} to={"/add-book"}>
               <BadgePlus className="h-4 w-4" />
               Add Book
             </NavLink>
           </li>
-          <li className="list">
+          <li className="list hover:bg-purple-600">
             <NavLink className={"flex items-center gap-1"} to="/my-books">
               <BookText className="h-4 w-4" />
               My Books
             </NavLink>
           </li>
-          <li className="list">
+          <li className="list hover:bg-purple-600">
             <NavLink className={"flex items-center gap-1"} to="/profile">
               <UserPen className="h-4 w-4" />
               Profile
